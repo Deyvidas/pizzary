@@ -1,0 +1,26 @@
+@mixin heightWidth($height, $width) {
+    height: $height;
+    width: $width;
+    max-height: $height;
+    max-width: $width;
+}
+
+.Ico {
+    display: flex;
+    align-self: center;
+
+    &__Star {
+        fill: $color-yellow;
+
+        &_S {
+            @include heightWidth(16px, 16px);
+        }
+    }
+
+    &__HeaderBtnIcon {
+        @include heightWidth(28px, 28px);
+        fill: currentColor;
+        stroke: currentColor;
+        transition: transform $transition-duration;
+    }
+}

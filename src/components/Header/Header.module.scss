@@ -1,0 +1,81 @@
+@import '../../styles';
+
+.Content {
+    @include flex-horizontal;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Left {
+    @include flex-horizontal(40px);
+    align-items: center;
+
+    &__LogoLink {
+        height: 100px;
+
+        user-select: none;
+        -webkit-user-drag: none;
+
+        > img {
+            height: 100%;
+        }
+    }
+
+    &__About {
+        @include flex-vertical;
+
+        &Text {
+            @include flex-horizontal(6px);
+            align-items: center;
+
+            font-size: 20px;
+            font-weight: 700;
+            line-height: calc(22 / 20);
+        }
+
+        &City {
+            display: inline-flex;
+            color: $color-orange;
+
+            &:hover {
+                color: lighten($color: $color-orange, $amount: 10%);
+            }
+        }
+
+        &Info {
+            @include flex-horizontal(6px);
+            align-items: center;
+
+            font-size: 16px;
+            font-weight: 700;
+            line-height: calc(18 / 16);
+        }
+
+        &Rating {
+            @include flex-horizontal(2px);
+        }
+    }
+}
+
+.Right {
+    @include flex-horizontal(32px);
+
+    &__Button {
+        @include flex-vertical;
+        align-items: center;
+
+        font-size: 16px;
+        font-weight: 700;
+        line-height: calc(18 / 16);
+
+        transition: color $transition-duration;
+
+        &:hover {
+            color: $color-orange;
+
+            > svg {
+                transform: translateY(-5px);
+            }
+        }
+    }
+}

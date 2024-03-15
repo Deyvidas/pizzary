@@ -1,0 +1,18 @@
+{
+  "printWidth": 120,
+  "tabWidth": 4,
+  "useTabs": false,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrderSeparation": true,
+  "importOrder": [
+    "react",
+    "<THIRD_PARTY_MODULES>",
+    "^src/",
+    ".(css|scss|sass)",
+    ".(png|jpg|svg)$",
+    "^.[.]?"
+  ]
+}

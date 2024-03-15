@@ -1,0 +1,15 @@
+.Container {
+    width: clamp(0px, 100%, $container-width);
+    margin-inline: auto;
+    padding-inline: $container-padding;
+}
+
+.ContainerRight {
+    padding-left: $container-padding;
+    margin-left: clamp(0px, calc((100vw - $container-width) / 2), 100%);
+}
+
+.ContainerLeft {
+    padding-right: $container-padding;
+    margin-right: clamp(0px, calc((100vw - $container-width) / 2), 100%);
+}
