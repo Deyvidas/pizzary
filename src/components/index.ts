@@ -1,1 +1,2 @@
-export { Header } from './Header/Header.component';
+export { headerRoutesCategories } from './Header/Header.components';
+export { Header } from './Header/Header.components';

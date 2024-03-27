@@ -1,10 +1,17 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "always"
+  "files.associations": {
+    "*.svg": "html",
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
+    "Комбо",
+    "burgery",
+    "deserty",
+    "napitki",
+    "piccetta",
     "Pizzary",
-    "trivago"
+    "Pizzetta",
+    "trivago",
+    "zacuski"
   ],
 }

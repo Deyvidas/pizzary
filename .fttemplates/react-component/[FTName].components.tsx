@@ -1,7 +1,7 @@
-import styles from './[FTName].module.scss'
+import s from './[FTName].module.scss'
 
 function [FTName]() {
-    return <div className={styles.[FTName]}></div>
+    return <div className={s.[FTName]}>[FTName|uppercase]</div>
 }
 
 export { [FTName] }

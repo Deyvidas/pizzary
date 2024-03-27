@@ -6,6 +6,8 @@ body {
     background-color: $page-bg;
     color: $text-color;
     font-family: $font-main;
+    font-weight: 500;
+    font-size: 16px;
 
     &.Dark {
         background-color: darken($page-bg, 50%);
