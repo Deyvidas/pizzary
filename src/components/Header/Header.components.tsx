@@ -1,49 +1,9 @@
-import { RouteObject } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { categoryRoutes } from 'src/routes';
 
 import sprites from '../../media/sprites.svg';
 import s from './Header.module.scss';
-
-import { OffersPage, PizzettaPage, PizzaPage, ZacuskiPage, BurgeryPage, NapitkiPage, DesertyPage } from 'src/pages';
-
-const categoryRoot = 'category';
-
-const headerRoutesCategories: Array<RouteObject> = [
-    {
-        id: 'Пицца',
-        path: `${categoryRoot}/pizza`,
-        element: <PizzaPage />,
-    },
-    {
-        id: 'Комбо',
-        path: `${categoryRoot}/offers`,
-        element: <OffersPage />,
-    },
-    {
-        id: 'Римские пиццы',
-        path: `${categoryRoot}/pizzetta`,
-        element: <PizzettaPage />,
-    },
-    {
-        id: 'Закуски',
-        path: `${categoryRoot}/zacuski`,
-        element: <ZacuskiPage />,
-    },
-    {
-        id: 'Бургеры',
-        path: `${categoryRoot}/burgery`,
-        element: <BurgeryPage />,
-    },
-    {
-        id: 'Напитки',
-        path: `${categoryRoot}/napitki`,
-        element: <NapitkiPage />,
-    },
-    {
-        id: 'Десерты',
-        path: `${categoryRoot}/deserty`,
-        element: <DesertyPage />,
-    },
-];
 
 function Header() {
     return (
@@ -54,17 +14,17 @@ function Header() {
     );
 }
 
-export { Header, headerRoutesCategories };
+export { Header };
 
 function HeaderTop() {
     return (
         <div className={s.Top}>
             <div className={s.TopLeft}>
-                <a className={s.Top__Link} href="#!">
+                <Link className={s.Top__Link} to={'/'}>
                     <svg className={`${s.Ico} ${s.Ico__Logo}`}>
                         <use href={`${sprites}#Logo`}></use>
                     </svg>
-                </a>
+                </Link>
                 <button className={s.Top__Button}>
                     <TextWithSmallIcon iconId={'Location'} text={'Москва'} />
                 </button>
@@ -89,23 +49,19 @@ function HeaderTop() {
 }
 
 function HeaderFloor() {
+    const categoryLinks = categoryRoutes.children || [];
+
     return (
         <div className={s.Floor}>
             <nav className={s.Floor__NavLinks}>
-                {headerRoutesCategories.map(route => {
+                {categoryLinks.map(({ id, path }) => {
                     return (
-                        <a
-                            key={route.id}
-                            className={s.Floor__NavLink}
-                            href={route.path}
-                            onClick={e => e.preventDefault()}
-                        >
-                            {route.id}
-                        </a>
+                        <Link className={s.Floor__NavLink} to={`/${categoryRoutes.path}/${path}`}>
+                            {id}
+                        </Link>
                     );
                 })}
             </nav>
-
             <div className={s.Floor__Buttons}>
                 <button className={s.Floor__Button}>
                     <TextWithSmallIcon iconId={'Cart'} text={'Корзина'} />

@@ -10,8 +10,8 @@
   "importOrder": [
     "react",
     "<THIRD_PARTY_MODULES>",
-    "^./(App|pages)",
-    "^./components",
+    "^(.|src)/(App|pages|routes)",
+    "^(.|src)/components",
     ".(css|scss|sass|png|jpg|svg)",
     "^.[.]?"
   ]

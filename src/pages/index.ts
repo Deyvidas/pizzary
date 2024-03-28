@@ -1,5 +1,6 @@
 export { BurgeryPage } from './BurgeryPage/BurgeryPage.components';
 export { DesertyPage } from './DesertyPage/DesertyPage.components';
+export { HomePage } from './HomePage/HomePage.components';
 export { NapitkiPage } from './NapitkiPage/NapitkiPage.components';
 export { NotFoundPage } from './NotFoundPage/NotFoundPage.components';
 export { OffersPage } from './OffersPage/OffersPage.components';

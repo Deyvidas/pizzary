@@ -1,7 +1,11 @@
-import s from './NotFoundPage.module.scss';
+import s from './NotFoundPage.module.scss'
 
 function NotFoundPage() {
-    return <div className={s.NotFoundPage}>NOT FOUND</div>;
+    return (
+        <div className={s.Container}>
+            <h1>Not found page</h1>
+        </div>
+    );
 }
 
-export { NotFoundPage };
+export { NotFoundPage }
