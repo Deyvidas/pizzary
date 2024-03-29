@@ -1,10 +1,13 @@
-@import '../../styles/index';
+@import '../../styles/mixins';
+@import '../../styles/svg-icons';
+@import '../../styles/vars';
 
 .Top {
-    @include flex-horizontal;
+    @include flex-horizontal(25px);
     padding-block: 12px;
     justify-content: space-between;
     align-items: center;
+    white-space: nowrap;
 
     color: $color-gray;
 
@@ -36,11 +39,12 @@
 }
 
 .Floor {
-    @include flex-horizontal;
+    @include flex-horizontal(25px);
     padding-block: 12px;
     padding-inline: 25px;
     justify-content: space-between;
     align-items: center;
+    white-space: nowrap;
 
     font-weight: 700;
 

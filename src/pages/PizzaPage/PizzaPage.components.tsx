@@ -1,11 +1,11 @@
-import s from './PizzaPage.module.scss'
+import s from './PizzaPage.module.scss';
 
 function PizzaPage() {
     return (
-        <div className={s.Container}>
+        <div className="Container">
             <h1>Pizza page</h1>
         </div>
     );
 }
 
-export { PizzaPage }
+export { PizzaPage };

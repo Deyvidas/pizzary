@@ -1,11 +1,11 @@
-import s from './HomePage.module.scss'
+import s from './HomePage.module.scss';
 
 function HomePage() {
     return (
-        <div className={s.Container}>
+        <div className="Container">
             <h1>Home page</h1>
         </div>
     );
 }
 
-export { HomePage }
+export { HomePage };

@@ -1,11 +1,11 @@
-import s from './NapitkiPage.module.scss'
+import s from './NapitkiPage.module.scss';
 
 function NapitkiPage() {
     return (
-        <div className={s.Container}>
+        <div className="Container">
             <h1>Napitki page</h1>
         </div>
     );
 }
 
-export { NapitkiPage }
+export { NapitkiPage };

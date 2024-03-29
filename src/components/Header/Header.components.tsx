@@ -7,7 +7,7 @@ import s from './Header.module.scss';
 
 function Header() {
     return (
-        <div className={s.Container}>
+        <div className="Container">
             <HeaderTop />
             <HeaderFloor />
         </div>
@@ -56,7 +56,7 @@ function HeaderFloor() {
             <nav className={s.Floor__NavLinks}>
                 {categoryLinks.map(({ id, path }) => {
                     return (
-                        <Link className={s.Floor__NavLink} to={`/${categoryRoutes.path}/${path}`}>
+                        <Link className={s.Floor__NavLink} key={id} to={`/${categoryRoutes.path}/${path}`}>
                             {id}
                         </Link>
                     );

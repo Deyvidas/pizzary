@@ -1,11 +1,11 @@
-import s from './DesertyPage.module.scss'
+import s from './DesertyPage.module.scss';
 
 function DesertyPage() {
     return (
-        <div className={s.Container}>
+        <div className="Container">
             <h1>Deserty page</h1>
         </div>
     );
 }
 
-export { DesertyPage }
+export { DesertyPage };
