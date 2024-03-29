@@ -26,22 +26,22 @@ function HeaderTop() {
                     </svg>
                 </Link>
                 <button className={s.Top__Button}>
-                    <TextWithSmallIcon iconId={'Location'} text={'Москва'} />
+                    <TextWithIcon iconId={'Location'} text={'Москва'} />
                 </button>
                 <button className={s.Top__Button}>
-                    <TextWithSmallIcon iconId={'Zones'} text={'Зоны доставки'} />
+                    <TextWithIcon iconId={'Zones'} text={'Зоны доставки'} />
                 </button>
                 <button className={s.Top__Button}>
-                    <TextWithSmallIcon iconId={'PhoneOrder'} text={'Закажи по телефону'} />
+                    <TextWithIcon iconId={'PhoneOrder'} text={'Закажи по телефону'} />
                 </button>
             </div>
 
             <div className={s.TopRight}>
                 <a className={s.Top__Link} href="#!">
-                    <TextWithSmallIcon iconId={'Points'} text={'Баллы'} />
+                    <TextWithIcon iconId={'Points'} text={'Баллы'} />
                 </a>
                 <button className={s.Top__Button}>
-                    <TextWithSmallIcon iconId={'Login'} text={'Вход'} />
+                    <TextWithIcon iconId={'Login'} text={'Вход'} />
                 </button>
             </div>
         </div>
@@ -56,7 +56,11 @@ function HeaderFloor() {
             <nav className={s.Floor__NavLinks}>
                 {categoryLinks.map(({ id, path }) => {
                     return (
-                        <Link className={s.Floor__NavLink} key={id} to={`/${categoryRoutes.path}/${path}`}>
+                        <Link
+                            className={s.Floor__NavLink}
+                            key={id}
+                            to={`/${categoryRoutes.path}/${path}`}
+                        >
                             {id}
                         </Link>
                     );
@@ -64,19 +68,19 @@ function HeaderFloor() {
             </nav>
             <div className={s.Floor__Buttons}>
                 <button className={s.Floor__Button}>
-                    <TextWithSmallIcon iconId={'Cart'} text={'Корзина'} />
+                    <TextWithIcon iconId={'Cart'} text={'Корзина'} />
                 </button>
             </div>
         </div>
     );
 }
 
-type TextWithSmallIconProps = {
+type TextWithIconPropsType = {
     iconId: string;
     text: string;
 };
 
-function TextWithSmallIcon({ iconId, text }: TextWithSmallIconProps) {
+function TextWithIcon({ iconId, text }: TextWithIconPropsType) {
     return (
         <>
             <svg className={`${s.Ico} ${s.Ico__HeaderTop}`}>
