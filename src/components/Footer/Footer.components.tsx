@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import { categoryRoutes, informationRoutes } from 'routes';
+
+import { mapLinks } from 'utils';
+
 import s from './Footer.module.scss';
 
 import AppStoreBlack from '../../media/footer/download/dark/AppStore.png';
@@ -13,76 +17,40 @@ import VK from '../../media/footer/socials/vk.png';
 
 function Footer() {
     return (
-        <div className={`Container ${s.Wrapper}`}>
+        <footer className={`Container ${s.Container}`}>
             <Menu />
             <Info />
             <Payment />
             <Contacts />
             <Download />
             <Copyright email={'care@pizzahut.ru'} />
-        </div>
+        </footer>
     );
 }
 
 export { Footer };
 
 function Menu() {
+    const categoryLinks = categoryRoutes.children || [];
+
     return (
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Меню</h2>
             <nav className={s.Section__Vertical}>
-                <a className={s.Section__Link} href="#!">
-                    link1
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link2
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link3
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link4
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link5
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link6
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link7
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link8
-                </a>
+                {mapLinks(categoryLinks, s.Section__Link, `/${categoryRoutes.path}`)}
             </nav>
         </div>
     );
 }
 
 function Info() {
+    const informationLinks = informationRoutes.children || [];
+
     return (
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Информация</h2>
             <nav className={s.Section__Vertical}>
-                <a className={s.Section__Link} href="#!">
-                    link1
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link2
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link3
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link4
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link5
-                </a>
-                <a className={s.Section__Link} href="#!">
-                    link6
-                </a>
+                {mapLinks(informationLinks, s.Section__Link)}
             </nav>
         </div>
     );

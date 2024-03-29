@@ -2,6 +2,13 @@
 @import '../../styles/svg-icons';
 @import '../../styles/vars';
 
+.Container {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
 .Top {
     @include flex-horizontal(25px);
     padding-block: 12px;
@@ -42,7 +49,6 @@
 .Floor {
     @include flex-horizontal(25px);
     padding-block: 12px;
-    padding-inline: 25px;
     justify-content: space-between;
     align-items: center;
     white-space: nowrap;

@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { App } from './App';
-import { HomePage, NotFoundPage } from './pages';
-import { categoryRoutes } from './routes';
+import { HomePage } from 'pages/common/HomePage';
+import { NotFoundPage } from 'pages/common/NotFoundPage';
+
+import { categoryRoutes, informationRoutes } from 'routes';
+
+import { App } from 'components/App';
 
 import './styles/index.scss';
 
@@ -21,6 +24,7 @@ const router = createBrowserRouter([
                 element: <HomePage />,
             },
             categoryRoutes,
+            informationRoutes,
         ],
     },
     {

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { categoryRoutes } from 'src/routes';
+import { categoryRoutes, informationRoutes } from 'routes';
+
+import { mapLinks, onClickScrollTop } from 'utils';
 
 import s from './Header.module.scss';
 
@@ -8,16 +10,20 @@ import sprites from '../../media/sprites.svg';
 
 function Header() {
     return (
-        <div className="Container">
+        <header className={`Container ${s.Container}`}>
             <HeaderTop />
             <HeaderFloor />
-        </div>
+        </header>
     );
 }
 
 export { Header };
 
 function HeaderTop() {
+    const loyaltyLink = informationRoutes.children?.find(route => {
+        return route.path === 'loyalty-program';
+    });
+
     return (
         <div className={s.Top}>
             <div className={s.TopLeft}>
@@ -38,9 +44,15 @@ function HeaderTop() {
             </div>
 
             <div className={s.TopRight}>
-                <a className={s.Top__Link} href="#!">
-                    <TextWithIcon iconId="Points" text="Баллы" />
-                </a>
+                {!loyaltyLink || (
+                    <Link
+                        className={s.Top__Link}
+                        to={`/${loyaltyLink.path}`}
+                        onClick={onClickScrollTop}
+                    >
+                        <TextWithIcon iconId="Points" text="Баллы" />
+                    </Link>
+                )}
                 <button className={s.Top__Button}>
                     <TextWithIcon iconId="Login" text="Вход" />
                 </button>
@@ -55,17 +67,7 @@ function HeaderFloor() {
     return (
         <div className={s.Floor}>
             <nav className={s.Floor__NavLinks}>
-                {categoryLinks.map(({ id, path }) => {
-                    return (
-                        <Link
-                            className={s.Floor__NavLink}
-                            key={id}
-                            to={`/${categoryRoutes.path}/${path}`}
-                        >
-                            {id}
-                        </Link>
-                    );
-                })}
+                {mapLinks(categoryLinks, s.Floor__NavLink, `/${categoryRoutes.path}`)}
             </nav>
             <div className={s.Floor__Buttons}>
                 <button className={s.Floor__Button}>
