@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 
 import { categoryRoutes } from 'src/routes';
 
-import sprites from '../../media/sprites.svg';
 import s from './Header.module.scss';
+
+import sprites from '../../media/sprites.svg';
 
 function Header() {
     return (
@@ -21,27 +22,27 @@ function HeaderTop() {
         <div className={s.Top}>
             <div className={s.TopLeft}>
                 <Link className={s.Top__Link} to={'/'}>
-                    <svg className={`${s.Ico} ${s.Ico__Logo}`}>
+                    <svg className={`${s.Ico} ${s.Ico__Logo}`} aria-label="Go to home">
                         <use href={`${sprites}#Logo`}></use>
                     </svg>
                 </Link>
                 <button className={s.Top__Button}>
-                    <TextWithIcon iconId={'Location'} text={'Москва'} />
+                    <TextWithIcon iconId="Location" text="Москва" />
                 </button>
                 <button className={s.Top__Button}>
-                    <TextWithIcon iconId={'Zones'} text={'Зоны доставки'} />
+                    <TextWithIcon iconId="Zones" text="Адреса ресторанов" />
                 </button>
                 <button className={s.Top__Button}>
-                    <TextWithIcon iconId={'PhoneOrder'} text={'Закажи по телефону'} />
+                    <TextWithIcon iconId="PhoneOrder" text="Закажи по телефону" />
                 </button>
             </div>
 
             <div className={s.TopRight}>
                 <a className={s.Top__Link} href="#!">
-                    <TextWithIcon iconId={'Points'} text={'Баллы'} />
+                    <TextWithIcon iconId="Points" text="Баллы" />
                 </a>
                 <button className={s.Top__Button}>
-                    <TextWithIcon iconId={'Login'} text={'Вход'} />
+                    <TextWithIcon iconId="Login" text="Вход" />
                 </button>
             </div>
         </div>
@@ -68,7 +69,7 @@ function HeaderFloor() {
             </nav>
             <div className={s.Floor__Buttons}>
                 <button className={s.Floor__Button}>
-                    <TextWithIcon iconId={'Cart'} text={'Корзина'} />
+                    <TextWithIcon iconId="Cart" text="Корзина" />
                 </button>
             </div>
         </div>

@@ -2,6 +2,15 @@ import { useEffect, useState } from 'react';
 
 import s from './Footer.module.scss';
 
+import AppStoreBlack from '../../media/footer/download/dark/AppStore.png';
+import GooglePlayBlack from '../../media/footer/download/dark/GooglePlay.png';
+import RuStoreBlack from '../../media/footer/download/dark/RuStore.png';
+import MasterCard from '../../media/footer/pay-methods/dark/mastercard.png';
+import Mir from '../../media/footer/pay-methods/dark/mir.png';
+import Visa from '../../media/footer/pay-methods/dark/visa.png';
+import Telegram from '../../media/footer/socials/telegram.png';
+import VK from '../../media/footer/socials/vk.png';
+
 function Footer() {
     return (
         <div className={`Container ${s.Wrapper}`}>
@@ -19,88 +28,131 @@ export { Footer };
 
 function Menu() {
     return (
-        <nav className={s.NavLinks}>
-            <h2 className={s.SectionHeading}>Меню</h2>
-            <a href="#!" className="MenuLink">
-                link1
-            </a>
-            <a href="#!" className="MenuLink">
-                link2
-            </a>
-            <a href="#!" className="MenuLink">
-                link3
-            </a>
-            <a href="#!" className="MenuLink">
-                link4
-            </a>
-            <a href="#!" className="MenuLink">
-                link5
-            </a>
-            <a href="#!" className="MenuLink">
-                link6
-            </a>
-            <a href="#!" className="MenuLink">
-                link7
-            </a>
-            <a href="#!" className="MenuLink">
-                link8
-            </a>
-        </nav>
+        <div className={s.Section}>
+            <h2 className={s.Section__Title}>Меню</h2>
+            <nav className={s.Section__Vertical}>
+                <a className={s.Section__Link} href="#!">
+                    link1
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link2
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link3
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link4
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link5
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link6
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link7
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link8
+                </a>
+            </nav>
+        </div>
     );
 }
 
 function Info() {
     return (
-        <nav className={s.NavLinks}>
-            <h2 className={s.SectionHeading}>Информация</h2>
-            <a href="#!" className="InfoLink">
-                link1
-            </a>
-            <a href="#!" className="InfoLink">
-                link2
-            </a>
-            <a href="#!" className="InfoLink">
-                link3
-            </a>
-            <a href="#!" className="InfoLink">
-                link4
-            </a>
-            <a href="#!" className="InfoLink">
-                link5
-            </a>
-            <a href="#!" className="InfoLink">
-                link6
-            </a>
-        </nav>
+        <div className={s.Section}>
+            <h2 className={s.Section__Title}>Информация</h2>
+            <nav className={s.Section__Vertical}>
+                <a className={s.Section__Link} href="#!">
+                    link1
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link2
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link3
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link4
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link5
+                </a>
+                <a className={s.Section__Link} href="#!">
+                    link6
+                </a>
+            </nav>
+        </div>
     );
 }
 
 function Payment() {
     return (
-        <div className={s.HorizontalIcons}>
-            <h2 className={s.SectionHeading}>Принимаем к оплате</h2>
-            <span>VISA</span>
-            <span>MASTER CARD</span>
-            <span>MIR</span>
+        <div className={s.Section}>
+            <h2 className={s.Section__Title}>Принимаем к оплате</h2>
+            <div className={s.Section__Horizontal}>
+                <Image img={Visa} alt="Visa" />
+                <Image img={MasterCard} alt="Master Card" />
+                <Image img={Mir} alt="Mir" />
+            </div>
         </div>
     );
 }
 
 function Contacts() {
     return (
-        <div>
-            <h2 className={s.SectionHeading}>Найдите нас</h2>
-            <h1>FooterMenuContacts</h1>
+        <div className={s.Section}>
+            <h2 className={s.Section__Title}>Найдите нас</h2>
+            <div className={s.Section__Vertical}>
+                <button className={s.Section__Button}>Адреса ресторанов</button>
+                <button className={s.Section__Button}>
+                    Обратная связь и удаление аккаунта
+                </button>
+            </div>
+            <div className={s.Section__Horizontal}>
+                <LinkedImage
+                    href="https://vk.com/pizzahutrussia"
+                    ariaLabel="Go to VK"
+                    img={VK}
+                    alt="VK"
+                />
+                <LinkedImage
+                    href="https://t.me/pizzahut_ru"
+                    ariaLabel="Go to Telegram"
+                    img={Telegram}
+                    alt="Telegram"
+                />
+            </div>
         </div>
     );
 }
 
 function Download() {
     return (
-        <div className={`${s.HorizontalIcons} ${s.DownloadLinks}`}>
-            <span>GOOGLE PLAY</span>
-            <span>APP STORE</span>
-            <span>RU STORE</span>
+        <div className={`${s.Section} ${s.DownloadSection}`}>
+            <h2 className={s.Section__Title}>Установить наше приложение</h2>
+            <nav className={s.Section__Horizontal}>
+                <LinkedImage
+                    href="https://play.google.com/store/apps/details?id=com.yum.android.PizzaN"
+                    ariaLabel="Go to GooglePlay"
+                    img={GooglePlayBlack}
+                    alt="GooglePlay"
+                />
+                <LinkedImage
+                    href="https://apps.apple.com/ru/app/pizzahut-pizzan/id6443643149"
+                    ariaLabel="Go to AppStore"
+                    img={AppStoreBlack}
+                    alt="AppStore"
+                />
+                <LinkedImage
+                    href="https://apps.rustore.ru/app/com.yum.android.PizzaN"
+                    ariaLabel="Go to RuStore"
+                    img={RuStoreBlack}
+                    alt="RuStore"
+                />
+            </nav>
         </div>
     );
 }
@@ -124,11 +176,42 @@ function Copyright({ email }: CopyrightPropsType) {
     });
 
     return (
-        <span className={s.Copyright}>
-            {year} © Fenix Mir llc. Email:&nbsp;
-            <a className={s.Copyright__Email} href={`mailto:${email}`}>
-                {email}
-            </a>
-        </span>
+        <div className={`${s.Section} ${s.CopyrightSection}`}>
+            <p>
+                {year} © Fenix Mir llc. Email:&nbsp;
+                <a className={s.Section__Link} href={`mailto:${email}`}>
+                    {email}
+                </a>
+            </p>
+        </div>
+    );
+}
+
+type ImagePropsType = {
+    img: '*.png';
+    alt: string;
+};
+
+function Image({ img, alt }: ImagePropsType) {
+    return <img className={s.Section__LinkImg} src={img} alt={alt} draggable={false} />;
+}
+
+type LinkedImagePropsType = ImagePropsType & {
+    href: string;
+    ariaLabel: string;
+};
+
+function LinkedImage(props: LinkedImagePropsType) {
+    return (
+        <a
+            className={s.Section__Link}
+            href={props.href}
+            aria-label={props.ariaLabel}
+            draggable={false}
+            target="_blank"
+            rel="noreferrer"
+        >
+            <Image img={props.img} alt={props.alt} />
+        </a>
     );
 }

@@ -12,7 +12,8 @@
     "<THIRD_PARTY_MODULES>",
     "^(.|src)/(App|pages|routes)",
     "^(.|src)/components",
-    ".(css|scss|sass|png|jpg|svg)",
+    ".(css|scss|sass)$",
+    ".(png|jpg|svg)$",
     "^.[.]?"
   ]
 }

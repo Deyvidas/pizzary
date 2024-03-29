@@ -29,6 +29,7 @@
     &__Link {
         display: flex;
         align-items: center;
+        color: currentColor;
 
         &:hover {
             cursor: pointer;
@@ -64,8 +65,12 @@
             background-color $transition-duration ease-in;
     }
 
-    &__NavLink:hover {
-        color: $color-crimson;
+    &__NavLink {
+        color: $text-color;
+
+        &:hover {
+            color: $color-crimson;
+        }
     }
 
     &__Button {
