@@ -2,6 +2,12 @@ import { Link } from 'react-router-dom';
 
 import { categoryRoutes, informationRoutes } from 'routes';
 
+import { Addresses } from 'modals/Addresses';
+import { CallToOrder } from 'modals/CallToOrder';
+import { Cart } from 'modals/Cart';
+import { Location } from 'modals/Location';
+import { Login } from 'modals/Login';
+
 import { mapLinks, onClickScrollTop } from 'utils';
 
 import s from './Header.module.scss';
@@ -32,15 +38,15 @@ function HeaderTop() {
                         <use href={`${sprites}#Logo`}></use>
                     </svg>
                 </Link>
-                <button className={s.Top__Button}>
+                <Location btnClassName={s.Top__Button}>
                     <TextWithIcon iconId="Location" text="Москва" />
-                </button>
-                <button className={s.Top__Button}>
+                </Location>
+                <Addresses btnClassName={s.Top__Button}>
                     <TextWithIcon iconId="Zones" text="Адреса ресторанов" />
-                </button>
-                <button className={s.Top__Button}>
+                </Addresses>
+                <CallToOrder btnClassName={s.Top__Button}>
                     <TextWithIcon iconId="PhoneOrder" text="Закажи по телефону" />
-                </button>
+                </CallToOrder>
             </div>
 
             <div className={s.TopRight}>
@@ -53,9 +59,9 @@ function HeaderTop() {
                         <TextWithIcon iconId="Points" text="Баллы" />
                     </Link>
                 )}
-                <button className={s.Top__Button}>
+                <Login btnClassName={s.Top__Button}>
                     <TextWithIcon iconId="Login" text="Вход" />
-                </button>
+                </Login>
             </div>
         </div>
     );
@@ -70,9 +76,9 @@ function HeaderFloor() {
                 {mapLinks(categoryLinks, s.Floor__NavLink, `/${categoryRoutes.path}`)}
             </nav>
             <div className={s.Floor__Buttons}>
-                <button className={s.Floor__Button}>
+                <Cart btnClassName={s.Floor__Button}>
                     <TextWithIcon iconId="Cart" text="Корзина" />
-                </button>
+                </Cart>
             </div>
         </div>
     );

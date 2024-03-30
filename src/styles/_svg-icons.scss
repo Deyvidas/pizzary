@@ -17,4 +17,8 @@
         @include heightWidth(16px, 16px);
         margin-right: 3px;
     }
+
+    &__Close {
+        @include heightWidth(22px, 22px);
+    }
 }

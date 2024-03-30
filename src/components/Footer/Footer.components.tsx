@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { categoryRoutes, informationRoutes } from 'routes';
 
+import { Addresses } from 'modals/Addresses';
+import { FeedbackNDeleteAccount } from 'modals/FeedbackNDeleteAccount';
+
 import { mapLinks } from 'utils';
 
 import s from './Footer.module.scss';
@@ -74,10 +77,10 @@ function Contacts() {
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Найдите нас</h2>
             <div className={s.Section__Vertical}>
-                <button className={s.Section__Button}>Адреса ресторанов</button>
-                <button className={s.Section__Button}>
+                <Addresses btnClassName={s.Section__Button}>Адреса ресторанов</Addresses>
+                <FeedbackNDeleteAccount btnClassName={s.Section__Button}>
                     Обратная связь и удаление аккаунта
-                </button>
+                </FeedbackNDeleteAccount>
             </div>
             <div className={s.Section__Horizontal}>
                 <LinkedImage

@@ -12,8 +12,10 @@
     "<THIRD_PARTY_MODULES>",
     "^pages",
     "^routes",
+    "^modals",
     "^components",
     "^utils",
+    "^styles",
     ".(css|scss|sass)$",
     ".(png|jpg|svg)$",
     "^.[.]?"

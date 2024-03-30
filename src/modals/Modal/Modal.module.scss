@@ -1,0 +1,39 @@
+@import '../../styles/vars';
+@import '../../styles/svg-icons';
+
+.Container {
+    position: fixed;
+    z-index: $Modal-z-index;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+
+    white-space: wrap;
+    overflow-y: scroll;
+    background-color: $modal-bg;
+
+    &__Content {
+        position: relative;
+        margin: auto;
+        padding: 30px;
+
+        border-radius: 10px;
+        color: $text-color;
+        background-color: $page-bg;
+    }
+
+    &__CloseButton {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        transition: color $transition-duration ease-in;
+        color: $color-gray-dark;
+
+        &:hover {
+            color: $color-crimson;
+        }
+    }
+}
