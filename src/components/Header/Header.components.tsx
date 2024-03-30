@@ -2,11 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { categoryRoutes, informationRoutes } from 'routes';
 
-import { Addresses } from 'modals/Addresses';
-import { CallToOrder } from 'modals/CallToOrder';
-import { Cart } from 'modals/Cart';
-import { Location } from 'modals/Location';
-import { Login } from 'modals/Login';
+import { ButtonToggleModal, ModalContext } from 'modals/Modal';
 
 import { mapLinks, onClickScrollTop } from 'utils';
 
@@ -14,7 +10,7 @@ import s from './Header.module.scss';
 
 import sprites from '../../media/sprites.svg';
 
-function Header() {
+export function Header() {
     return (
         <header className={`Container ${s.Container}`}>
             <HeaderTop />
@@ -22,8 +18,6 @@ function Header() {
         </header>
     );
 }
-
-export { Header };
 
 function HeaderTop() {
     const loyaltyLink = informationRoutes.children?.find(route => {
@@ -33,20 +27,32 @@ function HeaderTop() {
     return (
         <div className={s.Top}>
             <div className={s.TopLeft}>
-                <Link className={s.Top__Link} to={'/'}>
+                <Link className={s.Top__Link} to={'/'} onClick={onClickScrollTop}>
                     <svg className={`${s.Ico} ${s.Ico__Logo}`} aria-label="Go to home">
                         <use href={`${sprites}#Logo`}></use>
                     </svg>
                 </Link>
-                <Location btnClassName={s.Top__Button}>
+                <ButtonToggleModal
+                    className={s.Top__Button}
+                    modalContext={ModalContext}
+                    modalId={'Location'}
+                >
                     <TextWithIcon iconId="Location" text="Москва" />
-                </Location>
-                <Addresses btnClassName={s.Top__Button}>
+                </ButtonToggleModal>
+                <ButtonToggleModal
+                    className={s.Top__Button}
+                    modalContext={ModalContext}
+                    modalId={'Addresses'}
+                >
                     <TextWithIcon iconId="Zones" text="Адреса ресторанов" />
-                </Addresses>
-                <CallToOrder btnClassName={s.Top__Button}>
+                </ButtonToggleModal>
+                <ButtonToggleModal
+                    className={s.Top__Button}
+                    modalContext={ModalContext}
+                    modalId={'CallToOrder'}
+                >
                     <TextWithIcon iconId="PhoneOrder" text="Закажи по телефону" />
-                </CallToOrder>
+                </ButtonToggleModal>
             </div>
 
             <div className={s.TopRight}>
@@ -59,9 +65,13 @@ function HeaderTop() {
                         <TextWithIcon iconId="Points" text="Баллы" />
                     </Link>
                 )}
-                <Login btnClassName={s.Top__Button}>
+                <ButtonToggleModal
+                    className={s.Top__Button}
+                    modalContext={ModalContext}
+                    modalId={'Login'}
+                >
                     <TextWithIcon iconId="Login" text="Вход" />
-                </Login>
+                </ButtonToggleModal>
             </div>
         </div>
     );
@@ -76,9 +86,13 @@ function HeaderFloor() {
                 {mapLinks(categoryLinks, s.Floor__NavLink, `/${categoryRoutes.path}`)}
             </nav>
             <div className={s.Floor__Buttons}>
-                <Cart btnClassName={s.Floor__Button}>
+                <ButtonToggleModal
+                    className={s.Floor__Button}
+                    modalContext={ModalContext}
+                    modalId={'Cart'}
+                >
                     <TextWithIcon iconId="Cart" text="Корзина" />
-                </Cart>
+                </ButtonToggleModal>
             </div>
         </div>
     );

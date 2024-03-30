@@ -1,34 +1,26 @@
-import { PropsWithChildren, useRef, useState } from 'react';
-
-import { Modal, onClickToggle } from 'modals/Modal';
+import {
+    Modal,
+    ModalContext,
+    TModalProps,
+    useGetStatusOfModalWithId,
+} from 'modals/Modal';
 
 import s from './Cart.module.scss';
 
-type CartPropsType = {
-    btnClassName: string;
-};
+export function Cart() {
+    const { isOpen } = useGetStatusOfModalWithId(ModalContext, 'Cart');
+    if (!isOpen) return null;
 
-function Cart({ btnClassName, children }: PropsWithChildren<CartPropsType>) {
-    const isOpenRef = useRef(false);
-    const [isOpen, setIsOpen] = useState(isOpenRef.current);
-    const params = { isOpenRef, isOpen, setIsOpen };
-
+    const params: TModalProps = { modalId: 'Cart' };
     return (
-        <>
-            <button className={btnClassName} onClick={() => onClickToggle(params)}>
-                {children}
-            </button>
-            <Modal {...params}>
-                <h2>Cart</h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
-                    similique blanditiis quasi atque repellendus, sequi ducimus facilis
-                    tempora nihil consequatur odit dolor enim non temporibus, ipsam
-                    exercitationem eveniet. Quod, aliquam.
-                </p>
-            </Modal>
-        </>
+        <Modal {...params}>
+            <h2>Cart</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,
+                similique blanditiis quasi atque repellendus, sequi ducimus facilis
+                tempora nihil consequatur odit dolor enim non temporibus, ipsam
+                exercitationem eveniet. Quod, aliquam.
+            </p>
+        </Modal>
     );
 }
-
-export { Cart }

@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { categoryRoutes, informationRoutes } from 'routes';
 
-import { Addresses } from 'modals/Addresses';
-import { FeedbackNDeleteAccount } from 'modals/FeedbackNDeleteAccount';
+import { ButtonToggleModal, ModalContext } from 'modals/Modal';
 
 import { mapLinks } from 'utils';
 
@@ -18,7 +17,7 @@ import Visa from '../../media/footer/pay-methods/dark/visa.png';
 import Telegram from '../../media/footer/socials/telegram.png';
 import VK from '../../media/footer/socials/vk.png';
 
-function Footer() {
+export function Footer() {
     return (
         <footer className={`Container ${s.Container}`}>
             <Menu />
@@ -30,8 +29,6 @@ function Footer() {
         </footer>
     );
 }
-
-export { Footer };
 
 function Menu() {
     const categoryLinks = categoryRoutes.children || [];
@@ -77,10 +74,20 @@ function Contacts() {
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Найдите нас</h2>
             <div className={s.Section__Vertical}>
-                <Addresses btnClassName={s.Section__Button}>Адреса ресторанов</Addresses>
-                <FeedbackNDeleteAccount btnClassName={s.Section__Button}>
+                <ButtonToggleModal
+                    className={s.Section__Button}
+                    modalContext={ModalContext}
+                    modalId={'Addresses'}
+                >
+                    Адреса ресторанов
+                </ButtonToggleModal>
+                <ButtonToggleModal
+                    className={s.Section__Button}
+                    modalContext={ModalContext}
+                    modalId={'FeedbackNDeleteAccount'}
+                >
                     Обратная связь и удаление аккаунта
-                </FeedbackNDeleteAccount>
+                </ButtonToggleModal>
             </div>
             <div className={s.Section__Horizontal}>
                 <LinkedImage
