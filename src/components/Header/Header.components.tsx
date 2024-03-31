@@ -25,11 +25,11 @@ function HeaderTop() {
         <div className={s.Top}>
             <div className={s.TopLeft}>
                 <NavLinkCustom
-                    to="/"
+                    to='/'
                     className={s.Top__Link}
                     classNameActive={s.Top__Link_Active}
                 >
-                    <svg className={`${s.Ico} ${s.Ico__Logo}`} aria-label="Go to home">
+                    <svg className={`${s.Ico} ${s.Ico__Logo}`} aria-label='Go to home'>
                         <use href={`${sprites}#Logo`}></use>
                     </svg>
                 </NavLinkCustom>
@@ -38,21 +38,21 @@ function HeaderTop() {
                     modalContext={ModalContext}
                     modalId={'Location'}
                 >
-                    <TextWithIcon iconId="Location" text="Москва" />
+                    <TextWithIcon iconId='Location' text='Москва' />
                 </ButtonToggleModal>
                 <ButtonToggleModal
                     className={s.Top__Button}
                     modalContext={ModalContext}
                     modalId={'Addresses'}
                 >
-                    <TextWithIcon iconId="Zones" text="Адреса ресторанов" />
+                    <TextWithIcon iconId='Zones' text='Адреса ресторанов' />
                 </ButtonToggleModal>
                 <ButtonToggleModal
                     className={s.Top__Button}
                     modalContext={ModalContext}
                     modalId={'CallToOrder'}
                 >
-                    <TextWithIcon iconId="PhoneOrder" text="Закажи по телефону" />
+                    <TextWithIcon iconId='PhoneOrder' text='Закажи по телефону' />
                 </ButtonToggleModal>
             </div>
 
@@ -63,7 +63,7 @@ function HeaderTop() {
                         className={s.Top__Link}
                         classNameActive={s.Top__Link_Active}
                     >
-                        <TextWithIcon iconId="Points" text="Баллы" />
+                        <TextWithIcon iconId='Points' text='Баллы' />
                     </NavLinkCustom>
                 )}
                 <ButtonToggleModal
@@ -71,7 +71,7 @@ function HeaderTop() {
                     modalContext={ModalContext}
                     modalId={'Login'}
                 >
-                    <TextWithIcon iconId="Login" text="Вход" />
+                    <TextWithIcon iconId='Login' text='Вход' />
                 </ButtonToggleModal>
             </div>
         </div>
@@ -103,7 +103,7 @@ function HeaderFloor() {
                     modalContext={ModalContext}
                     modalId={'Cart'}
                 >
-                    <TextWithIcon iconId="Cart" text="Корзина" />
+                    <TextWithIcon iconId='Cart' text='Корзина' />
                 </ButtonToggleModal>
             </div>
         </div>

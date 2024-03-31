@@ -24,7 +24,7 @@ export function App() {
             <Location />
             <Login />
             {/* END MODALS */}
-            <div aria-label="Header-sticky-area">
+            <div aria-label='Header-sticky-area'>
                 <Header />
                 <Outlet />
             </div>

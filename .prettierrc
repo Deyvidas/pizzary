@@ -3,7 +3,12 @@
   "tabWidth": 4,
   "useTabs": false,
   "singleQuote": true,
+  "jsxSingleQuote": true,
   "arrowParens": "avoid",
+
+  "overrides": [
+    {"files": "*.scss", "options": {"printWidth": 120}}
+  ],
 
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrderSeparation": true,

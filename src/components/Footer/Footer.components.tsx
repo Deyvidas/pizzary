@@ -85,9 +85,9 @@ function Payment() {
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Принимаем к оплате</h2>
             <div className={s.Section__Horizontal}>
-                <Image className={s.Section__LinkImg} src={Visa} alt="Visa" />
-                <Image className={s.Section__LinkImg} src={MasterCard} alt="MasterCard" />
-                <Image className={s.Section__LinkImg} src={Mir} alt="Mir" />
+                <Image className={s.Section__LinkImg} src={Visa} alt='Visa' />
+                <Image className={s.Section__LinkImg} src={MasterCard} alt='MasterCard' />
+                <Image className={s.Section__LinkImg} src={Mir} alt='Mir' />
             </div>
         </div>
     );
@@ -274,8 +274,8 @@ function ImageLinkWrapper({ draggable, target, rel, ...props }: TImageLinkWrappe
             href={href}
             aria-label={ariaLabel}
             draggable={false}
-            target="_blank"
-            rel="noreferrer"
+            target='_blank'
+            rel='noreferrer'
             {..._props}
         >
             {children}
