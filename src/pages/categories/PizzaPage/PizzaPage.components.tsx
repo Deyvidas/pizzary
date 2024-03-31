@@ -1,4 +1,4 @@
-function PizzaPage() {
+export function PizzaPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function PizzaPage() {
         </div>
     );
 }
-
-export { PizzaPage };

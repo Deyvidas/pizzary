@@ -1,10 +1,12 @@
+import R from 'react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { categoryRoutes, informationRoutes } from 'routes';
 
 import { ButtonToggleModal, ModalContext } from 'modals/Modal';
 
-import { mapLinks } from 'utils';
+import { onClickScrollTop } from 'utils';
 
 import s from './Footer.module.scss';
 
@@ -31,26 +33,48 @@ export function Footer() {
 }
 
 function Menu() {
-    const categoryLinks = categoryRoutes.children || [];
+    const { path: categoryRoot, children: categoryLinks } = categoryRoutes;
 
     return (
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Меню</h2>
             <nav className={s.Section__Vertical}>
-                {mapLinks(categoryLinks, s.Section__Link, `/${categoryRoutes.path}`)}
+                {categoryLinks?.map(({ id, path }) => {
+                    return (
+                        <Link
+                            key={id}
+                            to={`/${categoryRoot}/${path}`}
+                            className={s.Section__Link}
+                            onClick={onClickScrollTop}
+                        >
+                            {id}
+                        </Link>
+                    );
+                })}
             </nav>
         </div>
     );
 }
 
 function Info() {
-    const informationLinks = informationRoutes.children || [];
+    const { children: informationLinks } = informationRoutes;
 
     return (
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Информация</h2>
             <nav className={s.Section__Vertical}>
-                {mapLinks(informationLinks, s.Section__Link)}
+                {informationLinks?.map(({ id, path }) => {
+                    return (
+                        <Link
+                            key={id}
+                            to={`/${path}`}
+                            className={s.Section__Link}
+                            onClick={onClickScrollTop}
+                        >
+                            {id}
+                        </Link>
+                    );
+                })}
             </nav>
         </div>
     );
@@ -61,9 +85,9 @@ function Payment() {
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Принимаем к оплате</h2>
             <div className={s.Section__Horizontal}>
-                <Image img={Visa} alt="Visa" />
-                <Image img={MasterCard} alt="Master Card" />
-                <Image img={Mir} alt="Mir" />
+                <Image className={s.Section__LinkImg} src={Visa} alt="Visa" />
+                <Image className={s.Section__LinkImg} src={MasterCard} alt="MasterCard" />
+                <Image className={s.Section__LinkImg} src={Mir} alt="Mir" />
             </div>
         </div>
     );
@@ -90,18 +114,22 @@ function Contacts() {
                 </ButtonToggleModal>
             </div>
             <div className={s.Section__Horizontal}>
-                <LinkedImage
-                    href="https://vk.com/pizzahutrussia"
-                    ariaLabel="Go to VK"
-                    img={VK}
-                    alt="VK"
-                />
-                <LinkedImage
-                    href="https://t.me/pizzahut_ru"
-                    ariaLabel="Go to Telegram"
-                    img={Telegram}
-                    alt="Telegram"
-                />
+                {imageLinks.socials.map(({ id, url, urlLabel, img, imgLabel }) => {
+                    return (
+                        <ImageLinkWrapper
+                            key={id}
+                            className={s.Section__Link}
+                            href={url}
+                            ariaLabel={urlLabel}
+                        >
+                            <Image
+                                className={s.Section__LinkImg}
+                                src={img}
+                                alt={imgLabel}
+                            />
+                        </ImageLinkWrapper>
+                    );
+                })}
             </div>
         </div>
     );
@@ -112,24 +140,22 @@ function Download() {
         <div className={`${s.Section} ${s.DownloadSection}`}>
             <h2 className={s.Section__Title}>Установить наше приложение</h2>
             <nav className={s.Section__Horizontal}>
-                <LinkedImage
-                    href="https://play.google.com/store/apps/details?id=com.yum.android.PizzaN"
-                    ariaLabel="Go to GooglePlay"
-                    img={GooglePlayBlack}
-                    alt="GooglePlay"
-                />
-                <LinkedImage
-                    href="https://apps.apple.com/ru/app/pizzahut-pizzan/id6443643149"
-                    ariaLabel="Go to AppStore"
-                    img={AppStoreBlack}
-                    alt="AppStore"
-                />
-                <LinkedImage
-                    href="https://apps.rustore.ru/app/com.yum.android.PizzaN"
-                    ariaLabel="Go to RuStore"
-                    img={RuStoreBlack}
-                    alt="RuStore"
-                />
+                {imageLinks.download.map(({ id, url, urlLabel, img, imgLabel }) => {
+                    return (
+                        <ImageLinkWrapper
+                            key={id}
+                            className={s.Section__Link}
+                            href={url}
+                            ariaLabel={urlLabel}
+                        >
+                            <Image
+                                className={s.Section__LinkImg}
+                                src={img}
+                                alt={imgLabel}
+                            />
+                        </ImageLinkWrapper>
+                    );
+                })}
             </nav>
         </div>
     );
@@ -165,31 +191,94 @@ function Copyright({ email }: CopyrightPropsType) {
     );
 }
 
-type ImagePropsType = {
-    img: '*.png';
+type TImageLink = {
+    id: string;
+    url: string;
+    urlLabel: string;
+    img: string;
+    imgLabel: string;
+};
+
+type TImageLinks = {
+    [key in 'socials' | 'download']: TImageLink[];
+};
+
+const imageLinks: TImageLinks = {
+    socials: [
+        {
+            id: 'VK',
+            url: 'https://vk.com/pizzahutrussia',
+            urlLabel: 'Go to VK',
+            img: VK,
+            imgLabel: 'VK',
+        },
+        {
+            id: 'Telegram',
+            url: 'https://t.me/pizzahut_ru',
+            urlLabel: 'Go to Telegram',
+            img: Telegram,
+            imgLabel: 'Telegram',
+        },
+    ],
+    download: [
+        {
+            id: 'GooglePlay',
+            url: 'https://play.google.com/store/apps/details?id=com.yum.android.PizzaN',
+            urlLabel: 'Go to GooglePlay',
+            img: GooglePlayBlack,
+            imgLabel: 'GooglePlay',
+        },
+        {
+            id: 'AppStore',
+            url: 'https://apps.apple.com/ru/app/pizzahut-pizzan/id6443643149',
+            urlLabel: 'Go to AppStore',
+            img: AppStoreBlack,
+            imgLabel: 'AppStore',
+        },
+        {
+            id: 'RuStore',
+            url: 'https://apps.rustore.ru/app/com.yum.android.PizzaN',
+            urlLabel: 'Go to RuStore',
+            img: RuStoreBlack,
+            imgLabel: 'RuStore',
+        },
+    ],
+};
+
+type TImageProps = R.ImgHTMLAttributes<HTMLImageElement> & {
+    className: string;
+    src: string;
     alt: string;
 };
 
-function Image({ img, alt }: ImagePropsType) {
-    return <img className={s.Section__LinkImg} src={img} alt={alt} draggable={false} />;
+function Image({ draggable, ...props }: TImageProps) {
+    const { className, src, alt, ..._props } = props;
+
+    return (
+        <img className={className} src={src} alt={alt} draggable={false} {..._props} />
+    );
 }
 
-type LinkedImagePropsType = ImagePropsType & {
+type TImageLinkWrapperProps = R.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    className: string;
     href: string;
     ariaLabel: string;
 };
 
-function LinkedImage(props: LinkedImagePropsType) {
+function ImageLinkWrapper({ draggable, target, rel, ...props }: TImageLinkWrapperProps) {
+    const { children, className, href, ariaLabel, ..._props } = props;
+
     return (
         <a
-            className={s.Section__Link}
-            href={props.href}
-            aria-label={props.ariaLabel}
+            className={className}
+            href={href}
+            aria-label={ariaLabel}
             draggable={false}
             target="_blank"
             rel="noreferrer"
+            {..._props}
         >
-            <Image img={props.img} alt={props.alt} />
+            {children}
         </a>
     );
 }

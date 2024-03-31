@@ -1,4 +1,4 @@
-function SkidkiPage() {
+export function SkidkiPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function SkidkiPage() {
         </div>
     );
 }
-
-export { SkidkiPage };

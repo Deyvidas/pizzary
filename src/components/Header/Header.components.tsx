@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
-
 import { categoryRoutes, informationRoutes } from 'routes';
 
 import { ButtonToggleModal, ModalContext } from 'modals/Modal';
 
-import { mapLinks, onClickScrollTop } from 'utils';
+import { NavLinkCustom } from 'components/NavLinkCustom';
 
 import s from './Header.module.scss';
 
@@ -20,18 +18,21 @@ export function Header() {
 }
 
 function HeaderTop() {
-    const loyaltyLink = informationRoutes.children?.find(route => {
-        return route.path === 'loyalty-program';
-    });
+    const { children: informationLinks } = informationRoutes;
+    const loyaltyLink = informationLinks?.find(l => l.path === 'loyalty-program');
 
     return (
         <div className={s.Top}>
             <div className={s.TopLeft}>
-                <Link className={s.Top__Link} to={'/'} onClick={onClickScrollTop}>
+                <NavLinkCustom
+                    to="/"
+                    className={s.Top__Link}
+                    classNameActive={s.Top__Link_Active}
+                >
                     <svg className={`${s.Ico} ${s.Ico__Logo}`} aria-label="Go to home">
                         <use href={`${sprites}#Logo`}></use>
                     </svg>
-                </Link>
+                </NavLinkCustom>
                 <ButtonToggleModal
                     className={s.Top__Button}
                     modalContext={ModalContext}
@@ -56,14 +57,14 @@ function HeaderTop() {
             </div>
 
             <div className={s.TopRight}>
-                {!loyaltyLink || (
-                    <Link
-                        className={s.Top__Link}
+                {loyaltyLink && (
+                    <NavLinkCustom
                         to={`/${loyaltyLink.path}`}
-                        onClick={onClickScrollTop}
+                        className={s.Top__Link}
+                        classNameActive={s.Top__Link_Active}
                     >
                         <TextWithIcon iconId="Points" text="Баллы" />
-                    </Link>
+                    </NavLinkCustom>
                 )}
                 <ButtonToggleModal
                     className={s.Top__Button}
@@ -78,12 +79,23 @@ function HeaderTop() {
 }
 
 function HeaderFloor() {
-    const categoryLinks = categoryRoutes.children || [];
+    const { path: categoryRoot, children: categoryLinks } = categoryRoutes;
 
     return (
         <div className={s.Floor}>
             <nav className={s.Floor__NavLinks}>
-                {mapLinks(categoryLinks, s.Floor__NavLink, `/${categoryRoutes.path}`)}
+                {categoryLinks?.map(({ id, path }) => {
+                    return (
+                        <NavLinkCustom
+                            key={id}
+                            to={`/${categoryRoot}/${path}`}
+                            className={s.Floor__NavLink}
+                            classNameActive={s.Floor__NavLink_Active}
+                        >
+                            {id}
+                        </NavLinkCustom>
+                    );
+                })}
             </nav>
             <div className={s.Floor__Buttons}>
                 <ButtonToggleModal

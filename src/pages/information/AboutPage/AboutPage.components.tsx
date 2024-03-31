@@ -1,4 +1,4 @@
-function AboutPage() {
+export function AboutPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function AboutPage() {
         </div>
     );
 }
-
-export { AboutPage };

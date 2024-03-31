@@ -1,4 +1,4 @@
-function NapitkiPage() {
+export function NapitkiPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function NapitkiPage() {
         </div>
     );
 }
-
-export { NapitkiPage };

@@ -1,4 +1,4 @@
-function NotFoundPage() {
+export function NotFoundPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function NotFoundPage() {
         </div>
     );
 }
-
-export { NotFoundPage };

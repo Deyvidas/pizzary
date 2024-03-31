@@ -37,6 +37,11 @@
         align-items: center;
         color: currentColor;
 
+        &_Active {
+            color: $color-green;
+            font-weight: 700;
+        }
+
         &:hover {
             cursor: pointer;
             color: $color-green;
@@ -72,6 +77,11 @@
 
     &__NavLink {
         color: $text-color;
+
+        &_Active {
+            color: $color-crimson;
+            font-weight: 700;
+        }
 
         &:hover {
             color: $color-crimson;

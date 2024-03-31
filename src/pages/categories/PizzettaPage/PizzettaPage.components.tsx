@@ -1,4 +1,4 @@
-function PizzettaPage() {
+export function PizzettaPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function PizzettaPage() {
         </div>
     );
 }
-
-export { PizzettaPage };

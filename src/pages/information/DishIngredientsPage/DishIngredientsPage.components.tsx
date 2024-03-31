@@ -1,4 +1,4 @@
-function DishIngredientsPage() {
+export function DishIngredientsPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function DishIngredientsPage() {
         </div>
     );
 }
-
-export { DishIngredientsPage };

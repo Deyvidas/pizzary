@@ -1,4 +1,4 @@
-function LoyaltyProgramPage() {
+export function LoyaltyProgramPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function LoyaltyProgramPage() {
         </div>
     );
 }
-
-export { LoyaltyProgramPage };

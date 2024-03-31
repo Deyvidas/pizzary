@@ -1,4 +1,4 @@
-function OrderPayPage() {
+export function OrderPayPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function OrderPayPage() {
         </div>
     );
 }
-
-export { OrderPayPage };

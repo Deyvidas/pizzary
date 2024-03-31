@@ -1,4 +1,4 @@
-function PrivacyPolicyPage() {
+export function PrivacyPolicyPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function PrivacyPolicyPage() {
         </div>
     );
 }
-
-export { PrivacyPolicyPage };

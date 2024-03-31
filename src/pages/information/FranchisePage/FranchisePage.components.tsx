@@ -1,4 +1,4 @@
-function FranchisePage() {
+export function FranchisePage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function FranchisePage() {
         </div>
     );
 }
-
-export { FranchisePage };

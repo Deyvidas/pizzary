@@ -1,4 +1,4 @@
-function ZacuskiPage() {
+export function ZacuskiPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function ZacuskiPage() {
         </div>
     );
 }
-
-export { ZacuskiPage };

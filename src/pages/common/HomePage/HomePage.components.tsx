@@ -1,4 +1,4 @@
-function HomePage() {
+export function HomePage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function HomePage() {
         </div>
     );
 }
-
-export { HomePage };

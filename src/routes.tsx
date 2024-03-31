@@ -15,7 +15,7 @@ import { LoyaltyProgramPage } from 'pages/information/LoyaltyProgramPage';
 import { OrderPayPage } from 'pages/information/OrderPayPage';
 import { PrivacyPolicyPage } from 'pages/information/PrivacyPolicyPage';
 
-const informationRoutes: RouteObject = {
+export const informationRoutes: RouteObject = {
     id: 'Информация о компании',
     children: [
         {
@@ -51,7 +51,7 @@ const informationRoutes: RouteObject = {
     ],
 };
 
-const categoryRoutes: RouteObject = {
+export const categoryRoutes: RouteObject = {
     id: 'Категории',
     path: 'category',
     children: [
@@ -97,5 +97,3 @@ const categoryRoutes: RouteObject = {
         },
     ],
 };
-
-export { categoryRoutes, informationRoutes };

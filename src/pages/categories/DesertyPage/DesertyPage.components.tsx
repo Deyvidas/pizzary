@@ -1,4 +1,4 @@
-function DesertyPage() {
+export function DesertyPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function DesertyPage() {
         </div>
     );
 }
-
-export { DesertyPage };

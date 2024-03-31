@@ -5,7 +5,7 @@ import {
     useGetStatusOfModalWithId,
 } from 'modals/Modal';
 
-function Login() {
+export function Login() {
     const { isOpen } = useGetStatusOfModalWithId(ModalContext, 'Login');
     if (!isOpen) return null;
 
@@ -22,5 +22,3 @@ function Login() {
         </Modal>
     );
 }
-
-export { Login };

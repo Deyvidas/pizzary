@@ -1,4 +1,4 @@
-function BurgeryPage() {
+export function BurgeryPage() {
     return (
         <div className="Container">
             <h1
@@ -14,5 +14,3 @@ function BurgeryPage() {
         </div>
     );
 }
-
-export { BurgeryPage };
