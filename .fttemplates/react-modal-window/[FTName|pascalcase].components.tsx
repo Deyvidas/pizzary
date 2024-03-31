@@ -1,9 +1,4 @@
-import {
-    Modal,
-    ModalContext,
-    TModalProps,
-    useGetStatusOfModalWithId,
-} from 'modals/Modal';
+import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
 
 import s from './[FTName|pascalcase].module.scss';
 

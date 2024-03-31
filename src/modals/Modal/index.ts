@@ -1,7 +1,7 @@
-export { ButtonToggleModal } from './Modal.components';
+export { ButtonToggleModal } from './ButtonModalToggle.components';
 export { Modal } from './Modal.components';
-export { ModalContext } from './Modal.components';
-export { ModalContextProvider } from './Modal.components';
-export { onClickToggle } from './Modal.components';
+export { ModalContext } from './ModalContextProvider.components';
+export { ModalContextProvider } from './ModalContextProvider.components';
+export { useGetModalStatus } from './ModalContextProvider.components';
+
 export { type TModalProps } from './Modal.components';
-export { useGetStatusOfModalWithId } from './Modal.components';

@@ -1,14 +1,7 @@
-import {
-    Modal,
-    ModalContext,
-    TModalProps,
-    useGetStatusOfModalWithId,
-} from 'modals/Modal';
-
-import s from './Cart.module.scss';
+import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
 
 export function Cart() {
-    const { isOpen } = useGetStatusOfModalWithId(ModalContext, 'Cart');
+    const { isOpen } = useGetModalStatus(ModalContext, 'Cart');
     if (!isOpen) return null;
 
     const params: TModalProps = { modalId: 'Cart' };

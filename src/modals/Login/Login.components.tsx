@@ -1,12 +1,7 @@
-import {
-    Modal,
-    ModalContext,
-    TModalProps,
-    useGetStatusOfModalWithId,
-} from 'modals/Modal';
+import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
 
 export function Login() {
-    const { isOpen } = useGetStatusOfModalWithId(ModalContext, 'Login');
+    const { isOpen } = useGetModalStatus(ModalContext, 'Login');
     if (!isOpen) return null;
 
     const params: TModalProps = { modalId: 'Login' };

@@ -1,14 +1,7 @@
-import {
-    Modal,
-    ModalContext,
-    TModalProps,
-    useGetStatusOfModalWithId,
-} from 'modals/Modal';
-
-import s from './CallToOrder.module.scss';
+import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
 
 export function CallToOrder() {
-    const { isOpen } = useGetStatusOfModalWithId(ModalContext, 'CallToOrder');
+    const { isOpen } = useGetModalStatus(ModalContext, 'CallToOrder');
     if (!isOpen) return null;
 
     const params: TModalProps = { modalId: 'CallToOrder' };

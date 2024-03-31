@@ -1,14 +1,7 @@
-import {
-    Modal,
-    ModalContext,
-    TModalProps,
-    useGetStatusOfModalWithId,
-} from 'modals/Modal';
-
-import s from './Addresses.module.scss';
+import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
 
 export function Addresses() {
-    const { isOpen } = useGetStatusOfModalWithId(ModalContext, 'Addresses');
+    const { isOpen } = useGetModalStatus(ModalContext, 'Addresses');
     if (!isOpen) return null;
 
     const params: TModalProps = { modalId: 'Addresses' };
