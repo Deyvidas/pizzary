@@ -1,6 +1,40 @@
+@import './mixins';
+
 .Container {
     width: 100%;
     padding-inline: max(calc((100vw - $container-width) / 2), $container-padding-min);
+
+    &__GraniteLight {
+        @include container-bg('../media/backgrounds/granite-light.jpg');
+    }
+
+    &__GraniteDark {
+        @include container-bg('../media/backgrounds/granite-dark.jpg');
+    }
+
+    &__GoUp {
+        animation: go-up calc($transition-duration * 3);
+        @keyframes go-up {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0%);
+            }
+        }
+    }
+
+    &__Appear {
+        animation: appear calc($transition-duration * 2);
+        @keyframes appear {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 .ContainerRight {

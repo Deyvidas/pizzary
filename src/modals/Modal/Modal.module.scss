@@ -13,7 +13,9 @@
 
     white-space: wrap;
     overflow-y: scroll;
+
     background-color: $modal-bg;
+    backdrop-filter: blur(5px);
 
     &__Content {
         position: relative;

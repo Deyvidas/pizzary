@@ -20,7 +20,7 @@ export function Modal(props: R.PropsWithChildren<TModalProps>) {
     const onClick = () => onClickToggle({ isOpenRef, isOpen, setIsOpen });
 
     return (
-        <div className={`Container ${s.Container}`} onClick={onClick}>
+        <div className={`Container Container__Appear ${s.Container}`} onClick={onClick}>
             <div className={s.Container__Content} onClick={e => e.stopPropagation()}>
                 <ButtonToggleModal
                     className={s.Container__CloseButton}

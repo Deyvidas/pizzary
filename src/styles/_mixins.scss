@@ -8,3 +8,10 @@
     flex-direction: column;
     row-gap: $row-gap;
 }
+
+@mixin container-bg($img-url) {
+    background-image: url($img-url);
+    background-position: top;
+    background-size: contain;
+    background-repeat: repeat;
+}
