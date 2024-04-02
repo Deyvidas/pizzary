@@ -1,17 +1,51 @@
+@function rem($px) {
+    @return calc(#{val($px)}rem / val($font-size));
+}
+
+@mixin font-size($coeff, $weight: #{$font-weight}) {
+    font-size: #{$coeff}rem;
+    line-height: $line-height;
+    font-weight: $weight;
+}
+
 @mixin flex-horizontal($col-gap: 0px) {
     display: flex;
-    column-gap: $col-gap;
+    column-gap: rem($col-gap);
+    align-items: center;
 }
 
 @mixin flex-vertical($row-gap: 0px) {
     display: flex;
     flex-direction: column;
-    row-gap: $row-gap;
+    row-gap: rem($row-gap);
 }
 
-@mixin container-bg($img-url) {
-    background-image: url($img-url);
-    background-position: top;
-    background-size: contain;
-    background-repeat: repeat;
+@mixin grid-auto-fit($min-col-width, $col-gap) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(rem($min-col-width), 1fr));
+    column-gap: rem($col-gap);
+}
+
+@mixin fixed-number-of-lines($coeff, $lines: 3) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include font-size($coeff);
+    min-height: calc(#{$coeff}rem * ($lines * val($line-height)));
+}
+
+/*
+* Return the value without measurement unit, e.g.
+* val(100px) => 100
+* val(100) => 100
+*/
+@function val($value) {
+    @if type-of($value) != 'number' or unitless($value) {
+        @return $value;
+    }
+    $one: $value * 0 + 1;
+    @return calc($value / $one);
 }

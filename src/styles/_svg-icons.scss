@@ -1,24 +1,34 @@
-@mixin heightWidth($height, $width) {
-    height: $height;
-    width: $width;
-    max-height: $height;
-    max-width: $width;
+@import '../styles/vars';
+@import '../styles/mixins';
+
+@mixin height-width($height, $width: null) {
+    @if not($width) {
+        $width: $height;
+    }
+
+    height: rem($height);
+    max-height: rem($height);
+    width: rem($width);
+    max-width: rem($width);
 }
 
 .Ico {
-    display: flex;
+    display: inline-flex;
     align-self: center;
 
     &__Logo {
-        @include heightWidth(34px, 240px);
+        @include height-width(34px, 240px);
     }
 
     &__HeaderTop {
-        @include heightWidth(16px, 16px);
-        margin-right: 3px;
+        @include height-width(16px);
     }
 
     &__Close {
-        @include heightWidth(22px, 22px);
+        @include height-width(22px);
+    }
+
+    &__Expand {
+        @include height-width(24px);
     }
 }

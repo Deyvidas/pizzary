@@ -5,11 +5,13 @@
     padding-inline: max(calc((100vw - $container-width) / 2), $container-padding-min);
 
     &__GraniteLight {
-        @include container-bg('../media/backgrounds/granite-light.jpg');
+        background-image: url('../media/backgrounds/granite-light.jpg');
+        background-size: 100vh;
     }
 
     &__GraniteDark {
-        @include container-bg('../media/backgrounds/granite-dark.jpg');
+        background-image: url('../media/backgrounds/granite-dark.jpg');
+        background-size: 100vh;
     }
 
     &__GoUp {

@@ -24,10 +24,10 @@ export function Footer() {
         <footer className={`Container ${s.Container}`}>
             <Menu />
             <Info />
-            <Payment />
-            <Contacts />
+            <Contacts email={'care@pizzahut.ru'} />
             <Download />
-            <Copyright email={'care@pizzahut.ru'} />
+            <Payment />
+            <Copyright />
         </footer>
     );
 }
@@ -93,7 +93,11 @@ function Payment() {
     );
 }
 
-function Contacts() {
+type TContactsProps = {
+    email: string;
+};
+
+function Contacts({ email }: TContactsProps) {
     return (
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Найдите нас</h2>
@@ -112,6 +116,9 @@ function Contacts() {
                 >
                     Обратная связь и удаление аккаунта
                 </ButtonToggleModal>
+                <a className={s.Section__Link} href={`mailto:${email}`}>
+                    Email:&nbsp;{email}
+                </a>
             </div>
             <div className={s.Section__Horizontal}>
                 {imageLinks.socials.map(({ id, url, urlLabel, img, imgLabel }) => {
@@ -137,9 +144,9 @@ function Contacts() {
 
 function Download() {
     return (
-        <div className={`${s.Section} ${s.DownloadSection}`}>
+        <div className={s.Section}>
             <h2 className={s.Section__Title}>Установить наше приложение</h2>
-            <nav className={s.Section__Horizontal}>
+            <nav className={s.Section__Vertical}>
                 {imageLinks.download.map(({ id, url, urlLabel, img, imgLabel }) => {
                     return (
                         <ImageLinkWrapper
@@ -161,11 +168,7 @@ function Download() {
     );
 }
 
-type CopyrightPropsType = {
-    email: string;
-};
-
-function Copyright({ email }: CopyrightPropsType) {
+function Copyright() {
     const day = 1000 * 60 * 60 * 24;
     const [year, setYear] = useState(new Date().getFullYear());
 
@@ -179,16 +182,7 @@ function Copyright({ email }: CopyrightPropsType) {
         };
     });
 
-    return (
-        <div className={`${s.Section} ${s.CopyrightSection}`}>
-            <p>
-                {year} © Fenix Mir llc. Email:&nbsp;
-                <a className={s.Section__Link} href={`mailto:${email}`}>
-                    {email}
-                </a>
-            </p>
-        </div>
-    );
+    return <div className={`${s.Section}`}>{year} © Fenix Mir llc.</div>;
 }
 
 type TImageLink = {

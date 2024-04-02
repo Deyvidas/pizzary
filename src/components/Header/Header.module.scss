@@ -3,29 +3,28 @@
 @import '../../styles/vars';
 
 .Container {
+    z-index: $z-index-Header;
+
     position: sticky;
     top: 0;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(3px);
 }
 
 .Top {
     @include flex-horizontal(25px);
-    padding-block: 12px;
+    padding-block: rem(12px);
     justify-content: space-between;
-    align-items: center;
     white-space: nowrap;
 
     color: $color-gray;
 
     &Left {
         @include flex-horizontal(20px);
-        align-items: center;
     }
 
     &Right {
         @include flex-horizontal(20px);
-        align-items: center;
 
         & .Ico {
             color: $color-green;
@@ -34,31 +33,29 @@
 
     &__Button,
     &__Link {
-        display: flex;
-        align-items: center;
+        @include flex-horizontal(6px);
         color: currentColor;
+        transition: color $transition-duration ease-in;
 
         &_Active {
             color: $color-green;
-            font-weight: 700;
+            font-weight: 500;
         }
 
         &:hover {
             cursor: pointer;
             color: $color-green;
-            transition: color $transition-duration ease-in;
         }
     }
 }
 
 .Floor {
     @include flex-horizontal(25px);
-    padding-block: 12px;
+    padding-block: rem(12px);
     justify-content: space-between;
-    align-items: center;
     white-space: nowrap;
 
-    font-weight: 700;
+    font-weight: 600;
 
     &__NavLinks {
         @include flex-horizontal(25px);
@@ -79,24 +76,19 @@
     &__NavLink {
         color: $text-color;
 
-        &_Active {
-            color: $color-crimson;
-            font-weight: 700;
-        }
-
+        &_Active,
         &:hover {
             color: $color-crimson;
         }
     }
 
     &__Button {
-        @include flex-horizontal(8px);
-        align-items: center;
+        @include flex-horizontal(6px);
 
-        padding-block: calc(9rem / 16);
-        padding-inline: calc(24rem / 16);
+        padding-inline: rem(16px);
+        padding-block: rem(8px);
 
-        border-radius: 0.25rem;
+        border-radius: rem(5px);
         color: $color-white;
         background-color: $color-green;
 

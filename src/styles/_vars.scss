@@ -1,7 +1,10 @@
 $container-width: 1150px;
 $container-padding-min: 30px;
 
-$font-main: 'Ysabeau Office', sans-serif;
+$font-main: 'Rubik', sans-serif;
+$font-size: 15px;
+$line-height: 1.3em;
+$font-weight: 400;
 
 $transition-duration: 0.2s;
 
@@ -17,4 +20,6 @@ $color-gray-dark: #1a1a1a;
 $color-crimson: #c8102e;
 $color-white: #ffffff;
 
-$Modal-z-index: 100;
+$z-index-Modal: 200; // [201-299]
+$z-index-Header: 100; // [101-199]
+$z-index-ToggleMenu: 0; // [2-99]
