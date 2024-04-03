@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { categoryRoutes, informationRoutes } from 'routes';
 
-import { ButtonToggleModal, ModalContext } from 'modals/Modal';
+import { ToggleModalButton } from 'modals/Modal';
 
 import { onClickScrollTop } from 'utils';
 
@@ -102,20 +102,15 @@ function Contacts({ email }: TContactsProps) {
         <div className={s.Section}>
             <h2 className={s.Section__Title}>Найдите нас</h2>
             <div className={s.Section__Vertical}>
-                <ButtonToggleModal
-                    className={s.Section__Button}
-                    modalContext={ModalContext}
-                    modalId={'Addresses'}
-                >
+                <ToggleModalButton id={'Addresses'} className={s.Section__Button}>
                     Адреса ресторанов
-                </ButtonToggleModal>
-                <ButtonToggleModal
+                </ToggleModalButton>
+                <ToggleModalButton
+                    id={'FeedbackNDeleteAccount'}
                     className={s.Section__Button}
-                    modalContext={ModalContext}
-                    modalId={'FeedbackNDeleteAccount'}
                 >
                     Обратная связь и удаление аккаунта
-                </ButtonToggleModal>
+                </ToggleModalButton>
                 <a className={s.Section__Link} href={`mailto:${email}`}>
                     Email:&nbsp;{email}
                 </a>

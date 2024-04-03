@@ -19,3 +19,7 @@
     overflow: hidden;
     user-select: none;
 }
+
+.UnlikableChild > * {
+    pointer-events: none;
+}

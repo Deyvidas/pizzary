@@ -1,12 +1,8 @@
-import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
+import { Modal } from 'modals/Modal';
 
 export function Addresses() {
-    const { isOpen } = useGetModalStatus(ModalContext, 'Addresses');
-    if (!isOpen) return null;
-
-    const params: TModalProps = { modalId: 'Addresses' };
     return (
-        <Modal {...params}>
+        <Modal togglerId='Addresses'>
             <h2>Addresses</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,

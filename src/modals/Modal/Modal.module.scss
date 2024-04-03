@@ -1,39 +1,36 @@
 @import '../../styles/vars';
+@import '../../styles/mixins';
 @import '../../styles/svg-icons';
 
 .Container {
-    position: fixed;
     z-index: $z-index-Modal;
-    top: 0;
-    left: 0;
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    width: 100vw;
 
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    align-items: center;
+    justify-content: center;
 
-    white-space: wrap;
-    overflow-y: scroll;
-
-    background-color: $modal-bg;
+    background-color: rgba($color-gray-dark, 0.9);
     backdrop-filter: blur(5px);
 
     &__Content {
         position: relative;
-        margin: auto;
-        padding: 30px;
-        user-select: text;
+        padding: rem(30px);
 
-        border-radius: 10px;
-        color: $text-color;
+        border-radius: rem(10px);
         background-color: $page-bg;
     }
 
     &__CloseButton {
         position: absolute;
-        top: 5px;
-        right: 5px;
-        transition: color $transition-duration ease-in;
+        top: rem(5px);
+        right: rem(5px);
+
         color: $color-gray-dark;
+        transition: color $transition-duration ease-in;
 
         &:hover {
             color: $color-crimson;

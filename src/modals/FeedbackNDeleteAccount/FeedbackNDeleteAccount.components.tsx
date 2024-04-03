@@ -1,12 +1,8 @@
-import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
+import { Modal } from 'modals/Modal';
 
 export function FeedbackNDeleteAccount() {
-    const { isOpen } = useGetModalStatus(ModalContext, 'FeedbackNDeleteAccount');
-    if (!isOpen) return null;
-
-    const params: TModalProps = { modalId: 'FeedbackNDeleteAccount' };
     return (
-        <Modal {...params}>
+        <Modal togglerId='FeedbackNDeleteAccount'>
             <h2>Feedback and delete account</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,

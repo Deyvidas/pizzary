@@ -1,12 +1,8 @@
-import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
+import { Modal } from 'modals/Modal';
 
 export function Location() {
-    const { isOpen } = useGetModalStatus(ModalContext, 'Location');
-    if (!isOpen) return null;
-
-    const params: TModalProps = { modalId: 'Location' };
     return (
-        <Modal {...params}>
+        <Modal togglerId='Location'>
             <h2>Location</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,

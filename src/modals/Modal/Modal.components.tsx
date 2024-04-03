@@ -1,38 +1,80 @@
 import R from 'react';
 
-import 'styles/index.scss';
-
 import s from './Modal.module.scss';
 
 import sprites from '../../media/sprites.svg';
 
-import { ButtonToggleModal, onClickToggle } from './ButtonModalToggle.components';
-import { ModalContext, useGetModalStatus } from './ModalContextProvider.components';
-import { TAvailableModalId } from './types';
+type TAvailableModalId =
+    | 'Addresses'
+    | 'CallToOrder'
+    | 'Cart'
+    | 'FeedbackNDeleteAccount'
+    | 'Location'
+    | 'Login';
 
-export type TModalProps = {
-    modalId: TAvailableModalId;
+type TToggleModalButtonProps = R.ButtonHTMLAttributes<HTMLButtonElement> & {
+    id: TAvailableModalId;
+    className: string;
 };
 
-export function Modal(props: R.PropsWithChildren<TModalProps>) {
-    const { modalId, children } = props;
-    const { isOpenRef, isOpen, setIsOpen } = useGetModalStatus(ModalContext, modalId);
-    const onClick = () => onClickToggle({ isOpenRef, isOpen, setIsOpen });
-
+export function ToggleModalButton({ id, className, children }: TToggleModalButtonProps) {
     return (
-        <div className={`Container Container__Appear ${s.Container}`} onClick={onClick}>
-            <div className={s.Container__Content} onClick={e => e.stopPropagation()}>
-                <ButtonToggleModal
+        <button id={id} className={`UnlikableChild ${className}`}>
+            {children}
+        </button>
+    );
+}
+
+type TModalProps = R.PropsWithChildren & {
+    togglerId: TAvailableModalId;
+};
+
+export function Modal({ togglerId, children }: TModalProps) {
+    const [isOpen, setIsOpen] = R.useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+        document.body.classList.add('NoScroll');
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+        document.body.classList.remove('NoScroll');
+    }
+
+    function onClick(event: MouseEvent) {
+        const target = event.target as HTMLElement;
+        target.id === togglerId ? openModal() : closeModal();
+    }
+
+    function onKeyDown(event: KeyboardEvent) {
+        event.key === 'Escape' && closeModal();
+    }
+
+    R.useEffect(() => {
+        document.addEventListener('click', onClick);
+        document.addEventListener('keydown', onKeyDown);
+        return () => {
+            document.removeEventListener('click', onClick);
+            document.removeEventListener('keydown', onKeyDown);
+        };
+    });
+
+    return isOpen ? (
+        <div className={`Container Container__Appear ${s.Container}`}>
+            <div className={s.Container__Content}>
+                <button
                     className={s.Container__CloseButton}
-                    modalContext={ModalContext}
-                    modalId={modalId}
+                    onClick={() => setIsOpen(false)}
                 >
                     <svg className={`${s.Ico} ${s.Ico__Close}`}>
                         <use href={`${sprites}#Close`}></use>
                     </svg>
-                </ButtonToggleModal>
+                </button>
                 {children}
             </div>
         </div>
+    ) : (
+        <></>
     );
 }

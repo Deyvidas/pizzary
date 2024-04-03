@@ -1,12 +1,8 @@
-import { Modal, ModalContext, TModalProps, useGetModalStatus } from 'modals/Modal';
+import { Modal } from 'modals/Modal';
 
 export function Login() {
-    const { isOpen } = useGetModalStatus(ModalContext, 'Login');
-    if (!isOpen) return null;
-
-    const params: TModalProps = { modalId: 'Login' };
     return (
-        <Modal {...params}>
+        <Modal togglerId='Login'>
             <h2>Login</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias,

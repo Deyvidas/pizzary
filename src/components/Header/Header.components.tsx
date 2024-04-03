@@ -1,6 +1,6 @@
 import { categoryRoutes, informationRoutes } from 'routes';
 
-import { ButtonToggleModal, ModalContext } from 'modals/Modal';
+import { ToggleModalButton } from 'modals/Modal';
 
 import { NavLinkCustom } from 'components/NavLinkCustom';
 
@@ -33,27 +33,15 @@ function HeaderTop() {
                         <use href={`${sprites}#Logo`}></use>
                     </svg>
                 </NavLinkCustom>
-                <ButtonToggleModal
-                    className={s.Top__Button}
-                    modalContext={ModalContext}
-                    modalId={'Location'}
-                >
+                <ToggleModalButton className={s.Top__Button} id={'Location'}>
                     <TextWithIcon iconId='Location' text='Москва' />
-                </ButtonToggleModal>
-                <ButtonToggleModal
-                    className={s.Top__Button}
-                    modalContext={ModalContext}
-                    modalId={'Addresses'}
-                >
+                </ToggleModalButton>
+                <ToggleModalButton id={'Addresses'} className={s.Top__Button}>
                     <TextWithIcon iconId='Zones' text='Адреса ресторанов' />
-                </ButtonToggleModal>
-                <ButtonToggleModal
-                    className={s.Top__Button}
-                    modalContext={ModalContext}
-                    modalId={'CallToOrder'}
-                >
+                </ToggleModalButton>
+                <ToggleModalButton id={'CallToOrder'} className={s.Top__Button}>
                     <TextWithIcon iconId='PhoneOrder' text='Закажи по телефону' />
-                </ButtonToggleModal>
+                </ToggleModalButton>
             </div>
 
             <div className={s.TopRight}>
@@ -66,13 +54,9 @@ function HeaderTop() {
                         <TextWithIcon iconId='Points' text='Баллы' />
                     </NavLinkCustom>
                 )}
-                <ButtonToggleModal
-                    className={s.Top__Button}
-                    modalContext={ModalContext}
-                    modalId={'Login'}
-                >
+                <ToggleModalButton className={s.Top__Button} id={'Login'}>
                     <TextWithIcon iconId='Login' text='Вход' />
-                </ButtonToggleModal>
+                </ToggleModalButton>
             </div>
         </div>
     );
@@ -98,13 +82,9 @@ function HeaderFloor() {
                 })}
             </nav>
             <div className={s.Floor__Buttons}>
-                <ButtonToggleModal
-                    className={s.Floor__Button}
-                    modalContext={ModalContext}
-                    modalId={'Cart'}
-                >
+                <ToggleModalButton id={'Cart'} className={s.Floor__Button}>
                     <TextWithIcon iconId='Cart' text='Корзина' />
-                </ButtonToggleModal>
+                </ToggleModalButton>
             </div>
         </div>
     );

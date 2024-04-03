@@ -90,6 +90,7 @@
 
     @include flex-vertical;
     position: relative;
+    color: $color-gray;
 
     &__Select {
         min-height: $select-height;
@@ -98,7 +99,7 @@
         @include flex-horizontal;
         justify-content: space-between;
         align-items: center;
-        padding-inline: rem(12px);
+        padding-left: rem(12px);
 
         cursor: default;
         border: 1px solid rgba($color-gray, 0.2);
@@ -114,9 +115,14 @@
         }
     }
 
-    &__Select_Active &__ExpandBtn {
+    &__ExpandBtn {
+        display: flex;
+        align-items: center;
         transition: transform $transition-duration ease-in;
-        transform: rotate(180deg);
+    }
+
+    &__Select_Active &__ExpandBtn {
+        transform: rotateX(180deg);
     }
 
     &__Parameters {
@@ -137,7 +143,6 @@
     }
 
     &__Parameter {
-        display: flex;
         cursor: pointer;
         transition: color $transition-duration ease-in;
 
