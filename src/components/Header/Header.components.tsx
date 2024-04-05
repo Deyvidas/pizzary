@@ -3,6 +3,7 @@ import { categoryRoutes, informationRoutes } from 'routes';
 import { ToggleModalButton } from 'modals/Modal';
 
 import { NavLinkCustom } from 'components/NavLinkCustom';
+import { Stack } from 'components/ui/Layouts/Stack';
 
 import s from './Header.module.scss';
 
@@ -10,10 +11,14 @@ import sprites from '../../media/sprites.svg';
 
 export function Header() {
     return (
-        <header className={`Container ${s.Container}`}>
-            <HeaderTop />
-            <HeaderFloor />
-        </header>
+        <>
+            <header className={`Container ${s.Container}`}>
+                <Stack $direction='column' $spacing={0.5}>
+                    <HeaderTop />
+                    <HeaderFloor />
+                </Stack>
+            </header>
+        </>
     );
 }
 
@@ -22,8 +27,8 @@ function HeaderTop() {
     const loyaltyLink = informationLinks?.find(l => l.path === 'loyalty-program');
 
     return (
-        <div className={s.Top}>
-            <div className={s.TopLeft}>
+        <Stack $direction='row' $spacing={1} $justify='space-between'>
+            <Stack $direction='row' $spacing={1}>
                 <NavLinkCustom
                     to='/'
                     className={s.Top__Link}
@@ -42,9 +47,9 @@ function HeaderTop() {
                 <ToggleModalButton id={'CallToOrder'} className={s.Top__Button}>
                     <TextWithIcon iconId='PhoneOrder' text='Закажи по телефону' />
                 </ToggleModalButton>
-            </div>
+            </Stack>
 
-            <div className={s.TopRight}>
+            <Stack $direction='row' $spacing={1}>
                 {loyaltyLink && (
                     <NavLinkCustom
                         to={`/${loyaltyLink.path}`}
@@ -57,8 +62,8 @@ function HeaderTop() {
                 <ToggleModalButton className={s.Top__Button} id={'Login'}>
                     <TextWithIcon iconId='Login' text='Вход' />
                 </ToggleModalButton>
-            </div>
-        </div>
+            </Stack>
+        </Stack>
     );
 }
 
@@ -66,8 +71,8 @@ function HeaderFloor() {
     const { path: categoryRoot, children: categoryLinks } = categoryRoutes;
 
     return (
-        <div className={s.Floor}>
-            <nav className={s.Floor__NavLinks}>
+        <Stack $direction='row' $spacing={1} $justify='space-between'>
+            <Stack $direction='row' $spacing={1}>
                 {categoryLinks?.map(({ id, path }) => {
                     return (
                         <NavLinkCustom
@@ -80,13 +85,13 @@ function HeaderFloor() {
                         </NavLinkCustom>
                     );
                 })}
-            </nav>
-            <div className={s.Floor__Buttons}>
+            </Stack>
+            <Stack $direction='row' $spacing={1}>
                 <ToggleModalButton id={'Cart'} className={s.Floor__Button}>
                     <TextWithIcon iconId='Cart' text='Корзина' />
                 </ToggleModalButton>
-            </div>
-        </div>
+            </Stack>
+        </Stack>
     );
 }
 

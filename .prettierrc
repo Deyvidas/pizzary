@@ -13,7 +13,7 @@
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrderSeparation": true,
   "importOrder": [
-    "react",
+    "^react",
     "<THIRD_PARTY_MODULES>",
     "^pages",
     "^routes",
@@ -23,6 +23,6 @@
     "^styles",
     ".(css|scss|sass)$",
     ".(png|jpg|svg)$",
-    "^.[.]?"
+    "^.[.]?/"
   ]
 }
