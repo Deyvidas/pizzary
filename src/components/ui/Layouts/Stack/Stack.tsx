@@ -1,6 +1,14 @@
-import styled, { css, CSSObject, CSSProperties, RuleSet } from 'styled-components';
+import R from 'react';
 
-export const Stack = styled('div')<TStackProps>`
+import styled, { css, CSSProperties, RuleSet } from 'styled-components';
+
+function _Stack(props: R.HTMLAttributes<HTMLDivElement> & TStackProps) {
+    const { children, ..._props } = props;
+
+    return <div {..._props}>{children}</div>;
+}
+
+export const Stack = styled(_Stack)`
     display: flex;
     ${p => getFlexDirection(p)};
     ${p => getGap(p)}
@@ -60,7 +68,9 @@ const getJustifyContent = (props: TStackProps): RuleSet => {
 };
 
 const getAlignItems = (props: TStackProps): RuleSet => {
-    const { $align } = { ...defaultStackProps, ...props };
+    const { $align, $direction } = { ...defaultStackProps, ...props };
+
+    if ($direction === 'column' && !props.$align) return css``;
 
     return css`
         align-items: ${$align};

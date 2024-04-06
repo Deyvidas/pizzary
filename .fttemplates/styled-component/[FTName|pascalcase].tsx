@@ -1,18 +1,28 @@
-import styled, { CSSObject } from 'styled-components';
+import R from 'react';
 
-export const [FTName|pascalcase] = styled('div')<T[FTName|pascalcase]Props>``;
+import styled, { css, RuleSet } from 'styled-components';
 
-type T[FTName|pascalcase]Props = {};
+function _[FTName|pascalcase](props: T[FTName|pascalcase]Props) {
+    const {children, ..._props} = props;
 
-const default[FTName|pascalcase]Props: Required<T[FTName|pascalcase]Props> = {};
+    return <div {..._props}>{children}</div>;
+}
 
-const setSome = (props: T[FTName|pascalcase]Props): CSSObject<T[FTName|pascalcase]Props> => {
+type T = R.HTMLAttributes<HTMLDivElement>;
+
+type T[FTName|pascalcase]Props = T & {};
+
+const default[FTName|pascalcase]Props: Required<Omit<T[FTName|pascalcase]Props, keyof T>> = {};
+
+export const [FTName|pascalcase] = styled(_[FTName|pascalcase])``;
+
+function getSome(props: T[FTName|pascalcase]Props): RuleSet {
     const {} = { ...default[FTName|pascalcase]Props, ...props};
 
     switch ('') {
         case '':
-            return {};
+            return css``;
         default:
-            throw new Error();
+            return css``;
     }
 };

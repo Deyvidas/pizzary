@@ -1,5 +1,7 @@
 import R from 'react';
 
+import { Button, TButtonProps } from 'components/ui/Inputs/Button';
+
 import s from './Modal.module.scss';
 
 import sprites from '../../media/sprites.svg';
@@ -12,17 +14,12 @@ type TAvailableModalId =
     | 'Location'
     | 'Login';
 
-type TToggleModalButtonProps = R.ButtonHTMLAttributes<HTMLButtonElement> & {
+type TToggleModalButtonProps = TButtonProps & {
     id: TAvailableModalId;
-    className: string;
 };
 
-export function ToggleModalButton({ id, className, children }: TToggleModalButtonProps) {
-    return (
-        <button id={id} className={`UnlikableChild ${className}`}>
-            {children}
-        </button>
-    );
+export function ToggleModalButton(props: TToggleModalButtonProps) {
+    return <Button {...props} />;
 }
 
 type TModalProps = R.PropsWithChildren & {
@@ -44,6 +41,7 @@ export function Modal({ togglerId, children }: TModalProps) {
 
     function onClick(event: MouseEvent) {
         const target = event.target as HTMLElement;
+        console.log(target);
         target.id === togglerId ? openModal() : closeModal();
     }
 

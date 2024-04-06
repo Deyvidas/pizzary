@@ -6,6 +6,9 @@ import { categoryRoutes, informationRoutes } from 'routes';
 
 import { ToggleModalButton } from 'modals/Modal';
 
+import { Button } from 'components/ui/Inputs/Button';
+import { Stack } from 'components/ui/Layouts/Stack';
+
 import { onClickScrollTop } from 'utils';
 
 import s from './Footer.module.scss';
@@ -18,6 +21,26 @@ import Mir from '../../media/footer/pay-methods/dark/mir.png';
 import Visa from '../../media/footer/pay-methods/dark/visa.png';
 import Telegram from '../../media/footer/socials/telegram.png';
 import VK from '../../media/footer/socials/vk.png';
+
+type TFooterSectionProps = {
+    children: R.ReactNode;
+    isNav?: boolean;
+    linkDirection?: 'row' | 'column';
+    title: string;
+};
+
+function FooterSection(props: TFooterSectionProps) {
+    const { title, children, linkDirection = 'column', isNav = true } = props;
+
+    return (
+        <Stack $direction='column' $spacing={1.6}>
+            <h2 className={s.Section__Title}>{title}</h2>
+            <Stack $direction={linkDirection} $spacing={0.8} as={isNav ? 'nav' : ''}>
+                {children}
+            </Stack>
+        </Stack>
+    );
+}
 
 export function Footer() {
     return (
@@ -36,23 +59,20 @@ function Menu() {
     const { path: categoryRoot, children: categoryLinks } = categoryRoutes;
 
     return (
-        <div className={s.Section}>
-            <h2 className={s.Section__Title}>Меню</h2>
-            <nav className={s.Section__Vertical}>
-                {categoryLinks?.map(({ id, path }) => {
-                    return (
-                        <Link
-                            key={id}
-                            to={`/${categoryRoot}/${path}`}
-                            className={s.Section__Link}
-                            onClick={onClickScrollTop}
-                        >
-                            {id}
-                        </Link>
-                    );
-                })}
-            </nav>
-        </div>
+        <FooterSection title='Меню'>
+            {categoryLinks?.map(({ id, path }) => {
+                return (
+                    <Link
+                        key={id}
+                        to={`/${categoryRoot}/${path}`}
+                        className={s.Section__Link}
+                        onClick={onClickScrollTop}
+                    >
+                        {id}
+                    </Link>
+                );
+            })}
+        </FooterSection>
     );
 }
 
@@ -60,36 +80,20 @@ function Info() {
     const { children: informationLinks } = informationRoutes;
 
     return (
-        <div className={s.Section}>
-            <h2 className={s.Section__Title}>Информация</h2>
-            <nav className={s.Section__Vertical}>
-                {informationLinks?.map(({ id, path }) => {
-                    return (
-                        <Link
-                            key={id}
-                            to={`/${path}`}
-                            className={s.Section__Link}
-                            onClick={onClickScrollTop}
-                        >
-                            {id}
-                        </Link>
-                    );
-                })}
-            </nav>
-        </div>
-    );
-}
-
-function Payment() {
-    return (
-        <div className={s.Section}>
-            <h2 className={s.Section__Title}>Принимаем к оплате</h2>
-            <div className={s.Section__Horizontal}>
-                <Image className={s.Section__LinkImg} src={Visa} alt='Visa' />
-                <Image className={s.Section__LinkImg} src={MasterCard} alt='MasterCard' />
-                <Image className={s.Section__LinkImg} src={Mir} alt='Mir' />
-            </div>
-        </div>
+        <FooterSection title='Информация'>
+            {informationLinks?.map(({ id, path }) => {
+                return (
+                    <Link
+                        key={id}
+                        to={`/${path}`}
+                        className={s.Section__Link}
+                        onClick={onClickScrollTop}
+                    >
+                        {id}
+                    </Link>
+                );
+            })}
+        </FooterSection>
     );
 }
 
@@ -99,23 +103,28 @@ type TContactsProps = {
 
 function Contacts({ email }: TContactsProps) {
     return (
-        <div className={s.Section}>
-            <h2 className={s.Section__Title}>Найдите нас</h2>
-            <div className={s.Section__Vertical}>
-                <ToggleModalButton id={'Addresses'} className={s.Section__Button}>
-                    Адреса ресторанов
-                </ToggleModalButton>
-                <ToggleModalButton
-                    id={'FeedbackNDeleteAccount'}
-                    className={s.Section__Button}
-                >
-                    Обратная связь и удаление аккаунта
-                </ToggleModalButton>
-                <a className={s.Section__Link} href={`mailto:${email}`}>
-                    Email:&nbsp;{email}
-                </a>
-            </div>
-            <div className={s.Section__Horizontal}>
+        <FooterSection title='Найдите нас' isNav={false}>
+            <ToggleModalButton id='Addresses' $variant='text' $size='s' $theme='gray'>
+                Адреса ресторанов
+            </ToggleModalButton>
+            <ToggleModalButton
+                id='FeedbackNDeleteAccount'
+                $variant='text'
+                $size='s'
+                $theme='gray'
+            >
+                Обратная связь и удаление аккаунта
+            </ToggleModalButton>
+            <Button
+                as={'a'}
+                href={`mailto:${email}`}
+                $variant='text'
+                $size='s'
+                $theme='gray'
+            >
+                Email:&nbsp;{email}
+            </Button>
+            <Stack $spacing={0.8}>
                 {imageLinks.socials.map(({ id, url, urlLabel, img, imgLabel }) => {
                     return (
                         <ImageLinkWrapper
@@ -132,34 +141,37 @@ function Contacts({ email }: TContactsProps) {
                         </ImageLinkWrapper>
                     );
                 })}
-            </div>
-        </div>
+            </Stack>
+        </FooterSection>
     );
 }
 
 function Download() {
     return (
-        <div className={s.Section}>
-            <h2 className={s.Section__Title}>Установить наше приложение</h2>
-            <nav className={s.Section__Vertical}>
-                {imageLinks.download.map(({ id, url, urlLabel, img, imgLabel }) => {
-                    return (
-                        <ImageLinkWrapper
-                            key={id}
-                            className={s.Section__Link}
-                            href={url}
-                            ariaLabel={urlLabel}
-                        >
-                            <Image
-                                className={s.Section__LinkImg}
-                                src={img}
-                                alt={imgLabel}
-                            />
-                        </ImageLinkWrapper>
-                    );
-                })}
-            </nav>
-        </div>
+        <FooterSection title='Установить наше приложение'>
+            {imageLinks.download.map(({ id, url, urlLabel, img, imgLabel }) => {
+                return (
+                    <ImageLinkWrapper
+                        key={id}
+                        className={s.Section__Link}
+                        href={url}
+                        ariaLabel={urlLabel}
+                    >
+                        <Image className={s.Section__LinkImg} src={img} alt={imgLabel} />
+                    </ImageLinkWrapper>
+                );
+            })}
+        </FooterSection>
+    );
+}
+
+function Payment() {
+    return (
+        <FooterSection title='Принимаем к оплате' linkDirection='row' isNav={false}>
+            <Image className={s.Section__LinkImg} src={Visa} alt='Visa' />
+            <Image className={s.Section__LinkImg} src={MasterCard} alt='MasterCard' />
+            <Image className={s.Section__LinkImg} src={Mir} alt='Mir' />
+        </FooterSection>
     );
 }
 
