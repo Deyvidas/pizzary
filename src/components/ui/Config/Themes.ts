@@ -1,5 +1,6 @@
 import { Color, TColorTone } from './Colors';
-import { AvailableTheme } from './Config';
+
+export type AvailableTheme = 'green' | 'gray' | 'grayDark' | 'current';
 
 export const Theme: TTheme = {
     current: {
@@ -10,6 +11,11 @@ export const Theme: TTheme = {
     gray: {
         borderColor: Color.gray,
         mainColor: Color.gray,
+        minorColor: Color.white,
+    },
+    grayDark: {
+        borderColor: Color.grayDark,
+        mainColor: Color.grayDark,
         minorColor: Color.white,
     },
     green: {

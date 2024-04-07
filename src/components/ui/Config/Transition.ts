@@ -5,7 +5,7 @@ type AvailableTransition = 'normal';
 export const Transition: TTransition = {
     normal: {
         transitionDuration: '0.2s',
-        transitionTimingFunction: 'ease-in',
+        transitionFunction: 'ease-in',
     },
 };
 
@@ -15,5 +15,5 @@ export type TTransition = {
 
 type TTransitionParams = {
     transitionDuration: CSSProperties['transitionDuration'];
-    transitionTimingFunction: CSSProperties['transitionTimingFunction'];
+    transitionFunction: CSSProperties['transitionTimingFunction'];
 };

@@ -1,49 +1,60 @@
 import R from 'react';
 
-import styled, { css, RuleSet } from 'styled-components';
+import styled, { css, CSSProperties, RuleSet, WebTarget } from 'styled-components';
 
-import { AvailableTheme, Config } from 'components/ui/Config';
-import { AvailableSize } from 'components/ui/Config';
+import {
+    AvailableSize,
+    AvailableText,
+    AvailableTheme,
+    calc,
+    Config,
+} from 'components/ui/Config';
 
-function _Button(props: TButtonProps) {
-    const { children, startIcon, endIcon, ..._props } = props;
+export function Button(props: TButtonProps) {
+    const { children, $startIcon, $endIcon } = props;
 
     return (
-        <button {..._props}>
-            {startIcon}
+        <_Button {...props}>
+            {$startIcon}
             {children && <div>{children}</div>}
-            {endIcon}
-        </button>
+            {$endIcon}
+        </_Button>
     );
 }
 
 type T = R.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type TButtonProps = T & {
+    $endIcon?: R.ReactElement | null;
     $size?: AvailableSize;
+    $startIcon?: R.ReactElement | null;
+    $text?: AvailableText;
     $theme?: AvailableTheme;
+    $transform?: CSSProperties['textTransform'];
     $variant?: 'contained' | 'outlined' | 'text';
-    endIcon?: R.ReactElement | null;
-    startIcon?: R.ReactElement | null;
+    as?: WebTarget;
 };
 
 const defaultButtonProps: Required<Omit<TButtonProps, keyof T>> = {
-    $size: 'm',
+    $endIcon: null,
+    $size: 'normal',
+    $startIcon: null,
+    $text: 'p',
     $theme: 'green',
+    $transform: 'none',
     $variant: 'contained',
-    endIcon: null,
-    startIcon: null,
+    as: 'button',
 };
 
-export const Button = styled(_Button)`
+const _Button = styled('button')<TButtonProps>`
     display: flex;
     align-items: center;
     column-gap: 0.3em;
+    flex-shrink: 0;
     ${p => getTransition(p)}
     ${p => getFontSize(p)};
     ${p => getTextTransform(p)};
     ${p => getColor(p)};
-    ${p => getBackgroundColor(p)};
     ${p => getBorder(p)};
     ${p => getPadding(p)};
     ${p => getSvgSize(p)};
@@ -55,52 +66,49 @@ export const Button = styled(_Button)`
 
 function getTransition(props: TButtonProps): RuleSet {
     const { $variant } = { ...defaultButtonProps, ...props };
-    const { transitionDuration, transitionTimingFunction } = Config.transition.normal;
+    const { transitionDuration, transitionFunction } = Config.transition.normal;
+
+    const base = css`
+        transition-duration: ${transitionDuration};
+        transition-timing-function: ${transitionFunction};
+    `;
 
     switch ($variant) {
-        case 'contained':
-            return css`
-                transition-property: color, border-color, background-color;
-                transition-duration: ${transitionDuration};
-                transition-timing-function: ${transitionTimingFunction};
-            `;
-        case 'outlined':
-            return css`
-                transition-property: color, border-color;
-                transition-duration: ${transitionDuration};
-                transition-timing-function: ${transitionTimingFunction};
-            `;
         case 'text':
             return css`
                 transition-property: color;
-                transition-duration: ${transitionDuration};
-                transition-timing-function: ${transitionTimingFunction};
-            `;
+            `.concat(base);
+
+        case 'outlined':
+            return css`
+                transition-property: color, border-color;
+            `.concat(base);
+
+        case 'contained':
+            return css`
+                transition-property: color, background-color;
+            `.concat(base);
     }
 }
 
 function getFontSize(props: TButtonProps): RuleSet {
-    const { $size } = { ...defaultButtonProps, ...props };
-    const { fontSize, lineHeight } = Config.font[$size];
+    const { $size, $text } = { ...defaultButtonProps, ...props };
+    const { coefficient } = Config.size[$size];
+    const { fontSize, fontWeight, lineHeight } = Config.text[$text];
 
     return css`
-        font-size: ${fontSize};
+        font-size: ${calc(fontSize, coefficient)};
+        font-weight: ${fontWeight};
         line-height: ${lineHeight};
     `;
 }
 
 function getTextTransform(props: TButtonProps): RuleSet {
-    const { $size } = { ...defaultButtonProps, ...props };
+    const { $transform } = { ...defaultButtonProps, ...props };
 
-    switch ($size) {
-        case 'l':
-            return css`
-                text-transform: uppercase;
-            `;
-
-        default:
-            return css``;
-    }
+    return css`
+        text-transform: ${$transform};
+    `;
 }
 
 function getColor(props: TButtonProps): RuleSet {
@@ -110,9 +118,11 @@ function getColor(props: TButtonProps): RuleSet {
     switch ($variant) {
         case 'contained':
             return css`
+                background-color: ${$theme !== 'current' && mainColor.normal};
                 color: ${minorColor.normal};
 
                 &:hover {
+                    background-color: ${$theme !== 'current' && mainColor.hover};
                     color: ${minorColor.hover};
                 }
             `;
@@ -128,35 +138,13 @@ function getColor(props: TButtonProps): RuleSet {
     }
 }
 
-function getBackgroundColor(props: TButtonProps): RuleSet {
-    const { $variant, $theme } = { ...defaultButtonProps, ...props };
-    const { mainColor } = Config.theme[$theme];
-
-    switch ($variant) {
-        case 'contained':
-            return css`
-                background-color: ${mainColor.normal};
-
-                &:hover {
-                    background-color: ${mainColor.hover};
-                }
-            `;
-
-        default:
-            return css``;
-    }
-}
-
 function getBorder(props: TButtonProps): RuleSet {
-    const { $variant, $theme, $size } = { ...defaultButtonProps, ...props };
+    const { $variant, $theme } = { ...defaultButtonProps, ...props };
     const { borderColor } = Config.theme[$theme];
-    const { borderRadius, borderStyle, borderWidth } = Config.border[$size];
+    const { borderRadius, borderStyle, borderWidth } = Config.border;
 
     switch ($variant) {
-        case 'text':
-            return css``;
-
-        default:
+        case 'outlined':
             return css`
                 border-color: ${borderColor.normal};
                 border-radius: ${borderRadius};
@@ -167,12 +155,20 @@ function getBorder(props: TButtonProps): RuleSet {
                     border-color: ${borderColor.hover};
                 }
             `;
+
+        case 'contained':
+            return css`
+                border-radius: ${borderRadius};
+            `;
+
+        default:
+            return css``;
     }
 }
 
 function getPadding(props: TButtonProps): RuleSet {
-    const { $variant, $size } = { ...defaultButtonProps, ...props };
-    const { paddingBlock, paddingInline } = Config.padding[$size];
+    const { $variant } = { ...defaultButtonProps, ...props };
+    const { paddingBlock, paddingInline } = Config.padding;
 
     switch ($variant) {
         case 'text':
@@ -187,13 +183,14 @@ function getPadding(props: TButtonProps): RuleSet {
 }
 
 function getSvgSize(props: TButtonProps): RuleSet {
-    const { $size, endIcon, startIcon } = { ...defaultButtonProps, ...props };
-    const { lineHeight } = Config.font[$size];
+    const { $text, $endIcon, $startIcon } = { ...defaultButtonProps, ...props };
+    const { lineHeight } = Config.text[$text];
 
-    if (!(endIcon || startIcon)) return css``;
+    if (!($endIcon || $startIcon)) return css``;
 
     return css`
         & svg {
+            font-size: inherit;
             height: ${lineHeight};
         }
     `;

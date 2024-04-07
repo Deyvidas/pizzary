@@ -1,34 +1,38 @@
 import R from 'react';
 
-import styled, { css, CSSProperties, RuleSet } from 'styled-components';
+import styled, { css, CSSProperties, RuleSet, WebTarget } from 'styled-components';
 
-function _Stack(props: R.HTMLAttributes<HTMLDivElement> & TStackProps) {
-    const { children, ..._props } = props;
+export function Stack(props: TStackProps) {
+    const {} = props;
 
-    return <div {..._props}>{children}</div>;
+    return <_Stack {...props} />;
 }
 
-export const Stack = styled(_Stack)`
+type T = R.HTMLAttributes<HTMLDivElement>;
+
+type TStackProps = T & {
+    $align?: CSSProperties['alignItems'];
+    $direction?: 'column' | 'row';
+    $justify?: CSSProperties['justifyContent'];
+    $spacing?: number;
+    as?: WebTarget;
+};
+
+const defaultStackProps: Required<Omit<TStackProps, keyof T>> = {
+    $align: 'center',
+    $direction: 'row',
+    $justify: 'normal',
+    $spacing: 1,
+    as: 'div',
+};
+
+const _Stack = styled('div')<TStackProps>`
     display: flex;
     ${p => getFlexDirection(p)};
     ${p => getGap(p)}
     ${p => getJustifyContent(p)};
     ${p => getAlignItems(p)};
 `;
-
-type TStackProps = {
-    $align?: CSSProperties['alignItems'];
-    $direction?: 'column' | 'row';
-    $justify?: CSSProperties['justifyContent'];
-    $spacing?: number;
-};
-
-const defaultStackProps: Required<TStackProps> = {
-    $align: 'center',
-    $direction: 'row',
-    $justify: 'normal',
-    $spacing: 1,
-};
 
 const getFlexDirection = (props: TStackProps): RuleSet => {
     const { $direction } = { ...defaultStackProps, ...props };

@@ -30,12 +30,12 @@ type TFooterSectionProps = {
 };
 
 function FooterSection(props: TFooterSectionProps) {
-    const { title, children, linkDirection = 'column', isNav = true } = props;
+    const { title, children, linkDirection = 'column', isNav } = props;
 
     return (
         <Stack $direction='column' $spacing={1.6}>
             <h2 className={s.Section__Title}>{title}</h2>
-            <Stack $direction={linkDirection} $spacing={0.8} as={isNav ? 'nav' : ''}>
+            <Stack $direction={linkDirection} $spacing={0.8} as={!!isNav ? 'nav' : ''}>
                 {children}
             </Stack>
         </Stack>
@@ -59,7 +59,7 @@ function Menu() {
     const { path: categoryRoot, children: categoryLinks } = categoryRoutes;
 
     return (
-        <FooterSection title='Меню'>
+        <FooterSection isNav title='Меню'>
             {categoryLinks?.map(({ id, path }) => {
                 return (
                     <Link
@@ -80,7 +80,7 @@ function Info() {
     const { children: informationLinks } = informationRoutes;
 
     return (
-        <FooterSection title='Информация'>
+        <FooterSection isNav title='Информация'>
             {informationLinks?.map(({ id, path }) => {
                 return (
                     <Link
@@ -103,7 +103,7 @@ type TContactsProps = {
 
 function Contacts({ email }: TContactsProps) {
     return (
-        <FooterSection title='Найдите нас' isNav={false}>
+        <FooterSection title='Найдите нас'>
             <ToggleModalButton id='Addresses' $variant='text' $size='s' $theme='gray'>
                 Адреса ресторанов
             </ToggleModalButton>
@@ -115,15 +115,7 @@ function Contacts({ email }: TContactsProps) {
             >
                 Обратная связь и удаление аккаунта
             </ToggleModalButton>
-            <Button
-                as={'a'}
-                href={`mailto:${email}`}
-                $variant='text'
-                $size='s'
-                $theme='gray'
-            >
-                Email:&nbsp;{email}
-            </Button>
+            <a href={`mailto:${email}`}>Email:&nbsp;{email}</a>
             <Stack $spacing={0.8}>
                 {imageLinks.socials.map(({ id, url, urlLabel, img, imgLabel }) => {
                     return (
@@ -148,7 +140,7 @@ function Contacts({ email }: TContactsProps) {
 
 function Download() {
     return (
-        <FooterSection title='Установить наше приложение'>
+        <FooterSection isNav title='Установить наше приложение'>
             {imageLinks.download.map(({ id, url, urlLabel, img, imgLabel }) => {
                 return (
                     <ImageLinkWrapper
@@ -167,7 +159,7 @@ function Download() {
 
 function Payment() {
     return (
-        <FooterSection title='Принимаем к оплате' linkDirection='row' isNav={false}>
+        <FooterSection title='Принимаем к оплате' linkDirection='row'>
             <Image className={s.Section__LinkImg} src={Visa} alt='Visa' />
             <Image className={s.Section__LinkImg} src={MasterCard} alt='MasterCard' />
             <Image className={s.Section__LinkImg} src={Mir} alt='Mir' />

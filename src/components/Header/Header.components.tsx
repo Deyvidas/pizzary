@@ -35,11 +35,11 @@ function HeaderTop() {
                     className={s.Top__Link}
                     classNameActive={s.Top__Link_Active}
                 >
-                    <Icon iconId='Logo' $size='m' />
+                    <Icon $iconId='Logo' $size='normal' />
                 </NavLinkCustom>
                 <ToggleModalButton
                     id='Location'
-                    startIcon={<Icon iconId='Location' />}
+                    $startIcon={<Icon $iconId='Location' />}
                     $variant='text'
                     $size='s'
                     $theme='gray'
@@ -48,7 +48,7 @@ function HeaderTop() {
                 </ToggleModalButton>
                 <ToggleModalButton
                     id='Addresses'
-                    startIcon={<Icon iconId='Zones' />}
+                    $startIcon={<Icon $iconId='Zones' />}
                     $variant='text'
                     $size='s'
                     $theme='gray'
@@ -57,7 +57,7 @@ function HeaderTop() {
                 </ToggleModalButton>
                 <ToggleModalButton
                     id='CallToOrder'
-                    startIcon={<Icon iconId='PhoneOrder' />}
+                    $startIcon={<Icon $iconId='PhoneOrder' />}
                     $variant='text'
                     $size='s'
                     $theme='gray'
@@ -78,7 +78,7 @@ function HeaderTop() {
                 )}
                 <ToggleModalButton
                     id='Login'
-                    startIcon={<Icon iconId='Login' $theme='green' />}
+                    $startIcon={<Icon $iconId='Login' $theme='green' />}
                     $variant='text'
                     $size='s'
                     $theme='gray'
@@ -112,9 +112,9 @@ function HeaderFloor() {
             <Stack>
                 <ToggleModalButton
                     id='Cart'
-                    startIcon={<Icon iconId='Cart' />}
+                    $startIcon={<Icon $iconId='Cart' />}
                     $variant='contained'
-                    $size='m'
+                    $size='normal'
                     $theme='green'
                 >
                     Корзина

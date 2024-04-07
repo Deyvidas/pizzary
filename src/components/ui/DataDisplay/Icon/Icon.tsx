@@ -1,47 +1,58 @@
 import R from 'react';
 
-import styled, { css, RuleSet } from 'styled-components';
+import styled, { css, RuleSet, WebTarget } from 'styled-components';
 
-import { AvailableSize, AvailableTheme, Config } from 'components/ui/Config';
-import { AvailableIcon, IconSize } from 'components/ui/IconSize';
+import {
+    AvailableIcon,
+    AvailableSize,
+    AvailableTheme,
+    Config,
+} from 'components/ui/Config';
 
 import sprites from '../../../../media/sprites.svg';
 
-function _Icon(props: R.SVGAttributes<HTMLOrSVGElement> & TIconProps) {
-    const { children, iconId, ..._props } = props;
+export function Icon(props: TIconProps) {
+    const { $iconId } = props;
 
     return (
-        <svg {..._props}>
-            <use href={`${sprites}#${iconId}`}></use>
-        </svg>
+        <_Icon {...props}>
+            <use href={`${sprites}#${$iconId}`}></use>
+        </_Icon>
     );
 }
 
-export const Icon = styled(_Icon)`
+type T = R.SVGProps<SVGSVGElement>;
+
+export type TIconProps = T & {
+    $iconId: AvailableIcon;
+    $size?: AvailableSize;
+    $theme?: AvailableTheme;
+    as?: WebTarget;
+};
+
+const defaultIconProps: Required<Omit<TIconProps, keyof T>> = {
+    $iconId: 'Close',
+    $size: 'normal',
+    $theme: 'current',
+    as: 'svg',
+};
+
+const _Icon = styled('svg')<TIconProps>`
     display: inline-flex;
     align-self: center;
+    font-size: ${Config.text.p.fontSize};
     ${p => getSize(p)}
     ${p => getColor(p)}
 `;
 
-export type TIconProps = {
-    iconId: AvailableIcon;
-    $size?: AvailableSize;
-    $theme?: AvailableTheme;
-};
-
-const defaultIconProps: Required<TIconProps> = {
-    iconId: 'Close',
-    $size: 'm',
-    $theme: 'current',
-};
-
 function getSize(props: TIconProps): RuleSet {
-    const { iconId, $size } = { ...defaultIconProps, ...props };
-    const { aspectRatio, scaleCoefficient } = IconSize[iconId][$size];
+    const { $iconId, $size } = { ...defaultIconProps, ...props };
+    const { coefficient } = Config.size[$size];
+    const { aspectRatio } = Config.iconSize[$iconId];
 
     return css`
-        height: calc(1rem * ${scaleCoefficient});
+        height: ${coefficient}em;
+        flex-shrink: 0;
         aspect-ratio: ${aspectRatio};
     `;
 }
@@ -49,12 +60,12 @@ function getSize(props: TIconProps): RuleSet {
 function getColor(props: TIconProps): RuleSet {
     const { $theme } = { ...defaultIconProps, ...props };
     const { hover, normal } = Config.theme[$theme].mainColor;
-    const { transitionDuration, transitionTimingFunction } = Config.transition.normal;
+    const { transitionDuration, transitionFunction } = Config.transition.normal;
 
     return css`
         transition-property: fill;
         transition-duration: ${transitionDuration};
-        transition-timing-function: ${transitionTimingFunction};
+        transition-timing-function: ${transitionFunction};
         fill: ${normal};
 
         &:hover {

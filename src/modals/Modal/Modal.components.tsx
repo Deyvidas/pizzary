@@ -41,7 +41,6 @@ export function Modal({ togglerId, children }: TModalProps) {
 
     function onClick(event: MouseEvent) {
         const target = event.target as HTMLElement;
-        console.log(target);
         target.id === togglerId ? openModal() : closeModal();
     }
 
