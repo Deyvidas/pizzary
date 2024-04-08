@@ -126,7 +126,7 @@ function ToggleMenu() {
 
 export function PizzaPage() {
     return (
-        <div className='Container Container__GoUp Container__GraniteLight'>
+        <div className='Container Container__GraniteLight'>
             <section className={s.Menu}>
                 <h2 className={s.Menu__Title}>Пицца</h2>
                 <main className={s.Menu__Items}>

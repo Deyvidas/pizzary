@@ -1,14 +1,12 @@
-import { categoryRoutes, informationRoutes } from 'routes';
+import { categoryRoutes, infoRoutes } from 'routes';
 
 import { ToggleModalButton } from 'modals/Modal';
 
-import { NavLinkCustom } from 'components/NavLinkCustom';
 import { Icon } from 'components/ui/DataDisplay/Icon';
 import { Stack } from 'components/ui/Layouts/Stack';
+import { Link } from 'components/ui/Navigation/Link';
 
 import s from './Header.module.scss';
-
-import sprites from '../../media/sprites.svg';
 
 export function Header() {
     return (
@@ -24,64 +22,61 @@ export function Header() {
 }
 
 function HeaderTop() {
-    const { children: informationLinks } = informationRoutes;
-    const loyaltyLink = informationLinks?.find(l => l.path === 'loyalty-program');
+    const loyaltyLink = infoRoutes.children?.find(l => l.path === 'loyalty-program');
+    if (!loyaltyLink) throw new Error('Route for loyalty-program missed.');
 
     return (
         <Stack $justify='space-between'>
             <Stack>
-                <NavLinkCustom
-                    to='/'
-                    className={s.Top__Link}
-                    classNameActive={s.Top__Link_Active}
-                >
-                    <Icon $iconId='Logo' $size='normal' />
-                </NavLinkCustom>
+                <Link to='/' $variant='text' $theme='current' $onClickScrollTop>
+                    <Icon $iconId='Logo' $height={3.4} />
+                </Link>
                 <ToggleModalButton
                     id='Location'
-                    $startIcon={<Icon $iconId='Location' />}
-                    $variant='text'
                     $size='s'
+                    $startIcon={<Icon $iconId='Location' />}
                     $theme='gray'
+                    $variant='text'
                 >
                     Москва
                 </ToggleModalButton>
                 <ToggleModalButton
                     id='Addresses'
-                    $startIcon={<Icon $iconId='Zones' />}
-                    $variant='text'
                     $size='s'
+                    $startIcon={<Icon $iconId='Zones' />}
                     $theme='gray'
+                    $variant='text'
                 >
                     Адреса ресторанов
                 </ToggleModalButton>
                 <ToggleModalButton
                     id='CallToOrder'
-                    $startIcon={<Icon $iconId='PhoneOrder' />}
-                    $variant='text'
                     $size='s'
+                    $startIcon={<Icon $iconId='PhoneOrder' />}
                     $theme='gray'
+                    $variant='text'
                 >
                     Закажи по телефону
                 </ToggleModalButton>
             </Stack>
 
             <Stack>
-                {loyaltyLink && (
-                    <NavLinkCustom
-                        to={`/${loyaltyLink.path}`}
-                        className={s.Top__Link}
-                        classNameActive={s.Top__Link_Active}
-                    >
-                        <TextWithIcon iconId='Points' text='Баллы' />
-                    </NavLinkCustom>
-                )}
+                <Link
+                    to={`/${loyaltyLink.path}`}
+                    $onClickScrollTop
+                    $size='s'
+                    $startIcon={<Icon $iconId='Points' $theme='green' />}
+                    $theme='gray'
+                    $variant='text'
+                >
+                    Баллы
+                </Link>
                 <ToggleModalButton
                     id='Login'
-                    $startIcon={<Icon $iconId='Login' $theme='green' />}
-                    $variant='text'
                     $size='s'
+                    $startIcon={<Icon $iconId='Login' $theme='green' />}
                     $theme='gray'
+                    $variant='text'
                 >
                     Вход
                 </ToggleModalButton>
@@ -98,14 +93,16 @@ function HeaderFloor() {
             <Stack>
                 {categoryLinks?.map(({ id, path }) => {
                     return (
-                        <NavLinkCustom
+                        <Link
                             key={id}
                             to={`/${categoryRoot}/${path}`}
-                            className={s.Floor__NavLink}
-                            classNameActive={s.Floor__NavLink_Active}
+                            $onClickScrollTop
+                            $theme='grayDark'
+                            $transform='uppercase'
+                            $variant='text'
                         >
                             {id}
-                        </NavLinkCustom>
+                        </Link>
                     );
                 })}
             </Stack>
@@ -113,29 +110,13 @@ function HeaderFloor() {
                 <ToggleModalButton
                     id='Cart'
                     $startIcon={<Icon $iconId='Cart' />}
-                    $variant='contained'
-                    $size='normal'
                     $theme='green'
+                    $transform='uppercase'
+                    $variant='contained'
                 >
                     Корзина
                 </ToggleModalButton>
             </Stack>
         </Stack>
-    );
-}
-
-type TextWithIconPropsType = {
-    iconId: string;
-    text: string;
-};
-
-function TextWithIcon({ iconId, text }: TextWithIconPropsType) {
-    return (
-        <>
-            <svg className={`${s.Ico} ${s.Ico__HeaderTop}`}>
-                <use href={`${sprites}#${iconId}`}></use>
-            </svg>
-            {text}
-        </>
     );
 }

@@ -1,8 +1,8 @@
 import { CSSProperties } from 'styled-components';
 
 export const Padding: TPadding = {
-    paddingBlock: '0.3em',
-    paddingInline: '0.6em',
+    paddingBlock: '0.4em',
+    paddingInline: '0.8em',
 };
 
 export type TPadding = {

@@ -1,5 +1,3 @@
-import R from 'react';
-
 import styled, { css, CSSProperties, RuleSet } from 'styled-components';
 
 import {
@@ -8,6 +6,8 @@ import {
     AvailableTheme,
     calc,
     Config,
+    THeadingAttrs,
+    TParagraphAttrs,
 } from 'components/ui/Config';
 
 export function Typography(props: TTypographyProps) {
@@ -16,7 +16,7 @@ export function Typography(props: TTypographyProps) {
     return <_Typography as={$variant} {...props} />;
 }
 
-type T = R.HTMLAttributes<HTMLHeadingElement & HTMLParagraphElement>;
+type T = THeadingAttrs & TParagraphAttrs;
 
 type TTypographyProps = T & {
     $isCentered?: boolean;

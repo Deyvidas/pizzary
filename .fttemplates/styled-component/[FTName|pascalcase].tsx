@@ -1,6 +1,6 @@
-import R from 'react';
-
 import styled, { css, RuleSet, WebTarget } from 'styled-components';
+
+import { TDivAttrs } from 'components/ui/Config/AttributesType';
 
 export function [FTName|pascalcase](props: T[FTName|pascalcase]Props) {
     const {} = props;
@@ -8,7 +8,7 @@ export function [FTName|pascalcase](props: T[FTName|pascalcase]Props) {
     return <_[FTName|pascalcase] {...props} />;
 }
 
-type T = R.HTMLAttributes<HTMLDivElement>;
+type T = TDivAttrs;
 
 type T[FTName|pascalcase]Props = T & {
     as?: WebTarget;

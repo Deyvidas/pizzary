@@ -1,6 +1,6 @@
 export function NotFoundPage() {
     return (
-        <div className='Container Container__GoUp'>
+        <div className='Container'>
             <h1
                 style={{
                     paddingBlock: '200px',

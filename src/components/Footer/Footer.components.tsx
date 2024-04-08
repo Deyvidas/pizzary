@@ -1,15 +1,13 @@
 import R from 'react';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
-import { categoryRoutes, informationRoutes } from 'routes';
+import { categoryRoutes, infoRoutes } from 'routes';
 
 import { ToggleModalButton } from 'modals/Modal';
 
-import { Button } from 'components/ui/Inputs/Button';
+import { Typography } from 'components/ui/DataDisplay/Typography';
 import { Stack } from 'components/ui/Layouts/Stack';
-
-import { onClickScrollTop } from 'utils';
+import { Link } from 'components/ui/Navigation/Link';
 
 import s from './Footer.module.scss';
 
@@ -34,7 +32,9 @@ function FooterSection(props: TFooterSectionProps) {
 
     return (
         <Stack $direction='column' $spacing={1.6}>
-            <h2 className={s.Section__Title}>{title}</h2>
+            <Typography $theme='current' $variant='h6'>
+                {title}
+            </Typography>
             <Stack $direction={linkDirection} $spacing={0.8} as={!!isNav ? 'nav' : ''}>
                 {children}
             </Stack>
@@ -65,8 +65,10 @@ function Menu() {
                     <Link
                         key={id}
                         to={`/${categoryRoot}/${path}`}
-                        className={s.Section__Link}
-                        onClick={onClickScrollTop}
+                        $onClickScrollTop
+                        $size='s'
+                        $theme='gray'
+                        $variant='text'
                     >
                         {id}
                     </Link>
@@ -77,7 +79,7 @@ function Menu() {
 }
 
 function Info() {
-    const { children: informationLinks } = informationRoutes;
+    const { children: informationLinks } = infoRoutes;
 
     return (
         <FooterSection isNav title='Информация'>
@@ -86,8 +88,10 @@ function Info() {
                     <Link
                         key={id}
                         to={`/${path}`}
-                        className={s.Section__Link}
-                        onClick={onClickScrollTop}
+                        $onClickScrollTop
+                        $size='s'
+                        $theme='gray'
+                        $variant='text'
                     >
                         {id}
                     </Link>
@@ -115,7 +119,9 @@ function Contacts({ email }: TContactsProps) {
             >
                 Обратная связь и удаление аккаунта
             </ToggleModalButton>
-            <a href={`mailto:${email}`}>Email:&nbsp;{email}</a>
+            <Link to={`mailto:${email}`} $size='s' $theme='gray' $variant='text'>
+                Email:&nbsp;{email}
+            </Link>
             <Stack $spacing={0.8}>
                 {imageLinks.socials.map(({ id, url, urlLabel, img, imgLabel }) => {
                     return (
@@ -181,7 +187,13 @@ function Copyright() {
         };
     });
 
-    return <div className={`${s.Section}`}>{year} © Fenix Mir llc.</div>;
+    return (
+        <Stack $align='flex-end' $justify='center'>
+            <Typography $isCentered $theme='current' $size='xxs'>
+                {year} © Fenix Mir llc.
+            </Typography>
+        </Stack>
+    );
 }
 
 type TImageLink = {

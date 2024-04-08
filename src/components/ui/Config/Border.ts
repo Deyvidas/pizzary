@@ -1,7 +1,7 @@
 import { CSSProperties } from 'styled-components';
 
 export const Border: TBorder = {
-    borderRadius: '0.5em',
+    borderRadius: '0.3em',
     borderStyle: 'solid',
     borderWidth: '0.1em',
 };

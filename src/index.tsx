@@ -5,7 +5,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { HomePage } from 'pages/common/HomePage';
 import { NotFoundPage } from 'pages/common/NotFoundPage';
 
-import { categoryRoutes, informationRoutes } from 'routes';
+import { categoryRoutes, infoRoutes } from 'routes';
 
 import { App } from 'components/App';
 
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
                 element: <HomePage />,
             },
             categoryRoutes,
-            informationRoutes,
+            infoRoutes,
         ],
     },
     {

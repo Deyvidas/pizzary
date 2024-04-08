@@ -1,6 +1,6 @@
-import R from 'react';
-
 import styled, { css, CSSProperties, RuleSet, WebTarget } from 'styled-components';
+
+import { TDivAttrs } from 'components/ui/Config/AttributesType';
 
 export function Stack(props: TStackProps) {
     const {} = props;
@@ -8,7 +8,7 @@ export function Stack(props: TStackProps) {
     return <_Stack {...props} />;
 }
 
-type T = R.HTMLAttributes<HTMLDivElement>;
+type T = TDivAttrs;
 
 type TStackProps = T & {
     $align?: CSSProperties['alignItems'];
@@ -28,6 +28,7 @@ const defaultStackProps: Required<Omit<TStackProps, keyof T>> = {
 
 const _Stack = styled('div')<TStackProps>`
     display: flex;
+    min-width: fit-content;
     ${p => getFlexDirection(p)};
     ${p => getGap(p)}
     ${p => getJustifyContent(p)};

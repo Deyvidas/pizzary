@@ -15,7 +15,7 @@ import { LoyaltyProgramPage } from 'pages/information/LoyaltyProgramPage';
 import { OrderPayPage } from 'pages/information/OrderPayPage';
 import { PrivacyPolicyPage } from 'pages/information/PrivacyPolicyPage';
 
-export const informationRoutes: RouteObject = {
+export const infoRoutes: RouteObject = {
     id: 'Информация о компании',
     children: [
         {

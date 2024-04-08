@@ -8,6 +8,7 @@ import {
     AvailableTheme,
     calc,
     Config,
+    TButtonAttrs,
 } from 'components/ui/Config';
 
 export function Button(props: TButtonProps) {
@@ -22,7 +23,7 @@ export function Button(props: TButtonProps) {
     );
 }
 
-type T = R.ButtonHTMLAttributes<HTMLButtonElement>;
+type T = TButtonAttrs;
 
 export type TButtonProps = T & {
     $endIcon?: R.ReactElement | null;
@@ -35,7 +36,7 @@ export type TButtonProps = T & {
     as?: WebTarget;
 };
 
-const defaultButtonProps: Required<Omit<TButtonProps, keyof T>> = {
+export const defaultButtonProps: Required<Omit<TButtonProps, keyof T>> = {
     $endIcon: null,
     $size: 'normal',
     $startIcon: null,
@@ -46,11 +47,13 @@ const defaultButtonProps: Required<Omit<TButtonProps, keyof T>> = {
     as: 'button',
 };
 
-const _Button = styled('button')<TButtonProps>`
+export const ButtonStyle = css<TButtonProps>`
     display: flex;
     align-items: center;
     column-gap: 0.3em;
     flex-shrink: 0;
+    cursor: pointer;
+    width: fit-content;
     ${p => getTransition(p)}
     ${p => getFontSize(p)};
     ${p => getTextTransform(p)};
@@ -62,6 +65,10 @@ const _Button = styled('button')<TButtonProps>`
     & > * {
         pointer-events: none;
     }
+`;
+
+const _Button = styled('button')<TButtonProps>`
+    ${ButtonStyle}
 `;
 
 function getTransition(props: TButtonProps): RuleSet {
